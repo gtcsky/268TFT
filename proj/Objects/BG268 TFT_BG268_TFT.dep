@@ -259,7 +259,7 @@ I (C:\Keil_v5\Sky\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include\cms
 I (C:\Keil_v5\Sky\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include\cmsis_armcc.h)(0x5E8ED122)
 I (C:\Keil_v5\Sky\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\Device\ARM\ARMCM0\Include\system_ARMCM0.h)(0x5E8ED12A)
 I (.\user\inc\display.h)(0x61A87456)
-I (.\user\inc\user_character.h)(0x61A89845)
+I (.\user\inc\user_character.h)(0x61A89CF1)
 I (..\components\driver\pwrmgr\pwrmgr.h)(0x5C8B3CCF)
 I (..\components\common\hal_mcu.h)(0x5F923166)
 I (..\components\driver\spi\spi.h)(0x5CC02098)
