@@ -62,12 +62,12 @@ contact Bouth R&D at www.bough.com.cn
 #define 	ADC_CHANNEL_BATT								ADC_CH2N_P13
 #define 	ADC_CHANNEL_TEMP								ADC_CH3P_P20
 
-#define 	BATT_VOLT_MIN									3.40
+#define 	BATT_VOLT_MIN									3.30
 #define	BATT_LV1_THESHOLD								3440	//3.5
 #define	BATT_LV2_THESHOLD								3600	//3.6
 #define	BATT_LV3_THESHOLD								3720	//3.7
 #define	BATT_LV4_THESHOLD								3900	//4.05
-#define 	BATT_VOLTAGE_MAX								4150	//mv
+#define 	BATT_VOLTAGE_MAX								4350	//mv
 //#define	CHARGE_FINAL_VOLT							414		//恒压模式电压阈值
 
 #define CURRENT_LED_MAX								860		//mA

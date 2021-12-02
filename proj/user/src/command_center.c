@@ -2569,17 +2569,17 @@ void HW_RESET_MCU(bool backup) {
   *  @note :
   ************************************************************************************************************/
 void versionDisplay(void) {
-	uint8 fw[] = { "FW:21120101" };
+	uint8 fw[] = { "FW:21120201" };
 	systems_param_Get_param(ITEM_FIRMWARE_REV, &fw[2], &fw[3]);
 	fw[2] = ':';
 	OLED_ShowString(2, 2, fw);
 
-	uint8 sw[] = { "SW:20211201" };
+	uint8 sw[] = { "SW:20211202" };
 //	systems_param_Get_param(ITEM_SOFTWARE_REV, &sw[2], &fw[3]);
 //	sw[2] = ':';
 	OLED_ShowString(2, 4, sw);
 
-	uint8 hw[] = { "HW:V05" };
+	uint8 hw[] = { "HW:V06" };
 //	systems_param_Get_param(ITEM_HARDWARE_REV, &hw[2], &fw[3]);
 //	hw[2] = ':';
 	OLED_ShowString(2, 6, hw);
