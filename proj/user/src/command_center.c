@@ -990,13 +990,13 @@ uint16 command_center_ProcessEvent(uint8 task_id, uint16 events) {
 //}
 
 void	 stopSceneModeCheck(void){
-	if(displayParams.vModeIndex>=PreinstallEffect){
+	if(displayParams.vModeIndex==PreinstallEffect){
 		turnOffAllLightEffect();
 	}
-	if(displayParams.customizeEffectFreq){
-		displayParams.customizeEffectFreq=0;
-		updateStrobeDisplay(&displayParams);
-	}
+//	if(displayParams.customizeEffectFreq){
+//		displayParams.customizeEffectFreq=0;
+//		updateStrobeDisplay(&displayParams);
+//	}
 	if(displayParams.preinstallEffectNo||displayParams.style1Value){
 		displayParams.preinstallEffectNo=0;
 		displayParams.style1Value=0;
@@ -1055,10 +1055,6 @@ void restoreFromCustomizeModeCheck(uint16 * flag) {
  *
  ****************************************************/
 void	  keyFuncUpProcess(u16 *flag){
-//	 if (CustomizeEffect == displayParams.arrowIndex){
-//		 LedStruct.pfncustomizeEffectOverCallBack();
-//		 turnOffAllLightEffect();
-//	}
 
 	if (HuesSetting == displayParams.arrowIndex) {
 		if (displayParams.hues < MAX_Hues) {
@@ -1068,24 +1064,37 @@ void	  keyFuncUpProcess(u16 *flag){
 		}
 		originalHsv2Rgb(displayParams.hues,100,100,&displayParams.rRate,&displayParams.gRate,&displayParams.bRate);
 		updateHuesDisplay(&displayParams,false);
-		*flag = CCS_FLAG_HUE | CCS_FLAG_SATURATION;
-		displayParams.command = CCS_LIGHT_MODE_HSI;
-		displayParams.mode = 0;
-		stopSceneModeCheck();
-		displayParams.vModeIndex= displayParams.arrowIndex;
-		*flag |= CCS_FLAG_COMMAND | CCS_FLAG_MODE | CCS_FLAG_BRIGHTNESS;
+
+		if(displayParams.customizeEffectFreq){
+			displayParams.backupArrowIndex=HuesSetting;
+			restoreFromCustomizeModeCheck(flag);
+			displayParams.vModeIndex = CustomizeEffect;
+		}else{
+			*flag = CCS_FLAG_HUE | CCS_FLAG_SATURATION;
+			displayParams.command = CCS_LIGHT_MODE_HSI;
+			displayParams.mode = 0;
+			stopSceneModeCheck();
+			displayParams.vModeIndex= displayParams.arrowIndex;
+			*flag |= CCS_FLAG_COMMAND | CCS_FLAG_MODE | CCS_FLAG_BRIGHTNESS;
+		}
 		CCS_DATATRANSFER_PROCESS(*flag, &displayParams);
 	} else if (ColorTempSetting == displayParams.arrowIndex) {
 		if (displayParams.colorTemperature < MAX_ColorTemp) {
 			displayParams.colorTemperature++;
 			updateColorTempDisplay( &displayParams);
 
-			*flag = CCS_FLAG_TEMPERATURE;
-			displayParams.command = CCS_LIGHT_MODE_CCT;
-			displayParams.mode = 0;
-			stopSceneModeCheck();
-			displayParams.vModeIndex= displayParams.arrowIndex;
-			*flag |= CCS_FLAG_COMMAND | CCS_FLAG_MODE | CCS_FLAG_BRIGHTNESS;
+			if (displayParams.customizeEffectFreq) {
+				displayParams.backupArrowIndex = ColorTempSetting;
+				restoreFromCustomizeModeCheck(flag);
+				displayParams.vModeIndex = CustomizeEffect;
+			} else {
+				*flag = CCS_FLAG_TEMPERATURE;
+				displayParams.command = CCS_LIGHT_MODE_CCT;
+				displayParams.mode = 0;
+				stopSceneModeCheck();
+				displayParams.vModeIndex = displayParams.arrowIndex;
+				*flag |= CCS_FLAG_COMMAND | CCS_FLAG_MODE | CCS_FLAG_BRIGHTNESS;
+			}
 			CCS_DATATRANSFER_PROCESS(*flag, &displayParams);
 		}
 	} else if (PreinstallEffect == displayParams.arrowIndex) { //灯效1 调节
@@ -1098,8 +1107,6 @@ void	  keyFuncUpProcess(u16 *flag){
 			displayParams.customizeEffectFreq=0;
 			updateStrobeDisplay(&displayParams);
 		}
-
-
 		restoreFromPreinstallModeCheck(flag);
 
 		CCS_DATATRANSFER_PROCESS(*flag, &displayParams);
@@ -1140,26 +1147,38 @@ void	  keyFuncDownProcess(u16 *flag){
 		}
 		originalHsv2Rgb(displayParams.hues,1.0,100,&displayParams.rRate,&displayParams.gRate,&displayParams.bRate);
 		updateHuesDisplay(&displayParams,false);
-		*flag = CCS_FLAG_HUE | CCS_FLAG_SATURATION;
-		displayParams.command = CCS_LIGHT_MODE_HSI;
-		displayParams.mode = 0;
-		stopSceneModeCheck();
-		displayParams.vModeIndex= displayParams.arrowIndex;
-		*flag |= CCS_FLAG_COMMAND | CCS_FLAG_MODE | CCS_FLAG_BRIGHTNESS;
+		if(displayParams.customizeEffectFreq){
+			displayParams.backupArrowIndex=HuesSetting;
+			restoreFromCustomizeModeCheck(flag);
+			displayParams.vModeIndex = CustomizeEffect;
+		}else{
+			*flag = CCS_FLAG_HUE | CCS_FLAG_SATURATION;
+			displayParams.command = CCS_LIGHT_MODE_HSI;
+			displayParams.mode = 0;
+			stopSceneModeCheck();
+			displayParams.vModeIndex= displayParams.arrowIndex;
+			*flag |= CCS_FLAG_COMMAND | CCS_FLAG_MODE | CCS_FLAG_BRIGHTNESS;
+		}
 		CCS_DATATRANSFER_PROCESS(*flag, &displayParams);
 	}
 	else if (ColorTempSetting == displayParams.arrowIndex){
 		if (displayParams.colorTemperature > MIN_ColorTemp)
 		{
 			displayParams.colorTemperature--;
-			updateColorTempDisplay( &displayParams);
+			updateColorTempDisplay(&displayParams);
 
-			*flag = CCS_FLAG_TEMPERATURE;
-			displayParams.command = CCS_LIGHT_MODE_CCT;
-			displayParams.mode = 0;
-			stopSceneModeCheck();
-			displayParams.vModeIndex= displayParams.arrowIndex;
-			*flag |= CCS_FLAG_COMMAND | CCS_FLAG_MODE | CCS_FLAG_BRIGHTNESS;
+			if (displayParams.customizeEffectFreq) {
+				displayParams.backupArrowIndex = ColorTempSetting;
+				restoreFromCustomizeModeCheck(flag);
+				displayParams.vModeIndex = CustomizeEffect;
+			} else {
+				*flag = CCS_FLAG_TEMPERATURE;
+				displayParams.command = CCS_LIGHT_MODE_CCT;
+				displayParams.mode = 0;
+				stopSceneModeCheck();
+				displayParams.vModeIndex = displayParams.arrowIndex;
+				*flag |= CCS_FLAG_COMMAND | CCS_FLAG_MODE | CCS_FLAG_BRIGHTNESS;
+			}
 			CCS_DATATRANSFER_PROCESS(*flag, &displayParams);
 		}
 	} else if (PreinstallEffect == displayParams.arrowIndex) { //灯效1 调节

@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\BG268_TFT.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\BG268_TFT.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Thu Dec 02 15:42:38 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Thu Dec 02 17:56:26 2021
 <BR><P>
 <H3>Maximum Stack Usage =        488 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -2957,7 +2957,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;keyFuncUpProcess
 </UL>
 
-<P><STRONG><a name="[9e]"></a>keyFuncDownProcess</STRONG> (Thumb, 226 bytes, Stack size 32 bytes, command_center.o(i.keyFuncDownProcess))
+<P><STRONG><a name="[9e]"></a>keyFuncDownProcess</STRONG> (Thumb, 252 bytes, Stack size 32 bytes, command_center.o(i.keyFuncDownProcess))
 <BR><BR>[Stack]<UL><LI>Max Depth = 360<LI>Call Chain = keyFuncDownProcess &rArr; keyBrightnessDecProcess &rArr; CCS_DATATRANSFER_PROCESS &rArr; light_ctrl &rArr; startLightEffect &rArr; customizeGradualEffect &rArr; loadTargetPwmData &rArr; loadTargetRGBValue &rArr; hsb2Rgb &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; __aeabi_llsr
 </UL>
 <BR>[Calls]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CCS_DATATRANSFER_PROCESS
@@ -2974,7 +2974,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CCS_keysChange_handle
 </UL>
 
-<P><STRONG><a name="[9d]"></a>keyFuncUpProcess</STRONG> (Thumb, 244 bytes, Stack size 32 bytes, command_center.o(i.keyFuncUpProcess))
+<P><STRONG><a name="[9d]"></a>keyFuncUpProcess</STRONG> (Thumb, 276 bytes, Stack size 32 bytes, command_center.o(i.keyFuncUpProcess))
 <BR><BR>[Stack]<UL><LI>Max Depth = 360<LI>Call Chain = keyFuncUpProcess &rArr; keyBrightnessIncProcess &rArr; CCS_DATATRANSFER_PROCESS &rArr; light_ctrl &rArr; startLightEffect &rArr; customizeGradualEffect &rArr; loadTargetPwmData &rArr; loadTargetRGBValue &rArr; hsb2Rgb &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; __aeabi_llsr
 </UL>
 <BR>[Calls]<UL><LI><a href="#[68]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CCS_DATATRANSFER_PROCESS
@@ -3998,7 +3998,7 @@ Global Symbols
 <LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;command_center_ProcessEvent
 </UL>
 
-<P><STRONG><a name="[1c7]"></a>startLightEffect</STRONG> (Thumb, 94 bytes, Stack size 8 bytes, user_lighteffect.o(i.startLightEffect))
+<P><STRONG><a name="[1c7]"></a>startLightEffect</STRONG> (Thumb, 98 bytes, Stack size 8 bytes, user_lighteffect.o(i.startLightEffect))
 <BR><BR>[Stack]<UL><LI>Max Depth = 248<LI>Call Chain = startLightEffect &rArr; customizeGradualEffect &rArr; loadTargetPwmData &rArr; loadTargetRGBValue &rArr; hsb2Rgb &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; __aeabi_llsr
 </UL>
 <BR>[Calls]<UL><LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;turnOffAllLightEffect
@@ -4035,11 +4035,10 @@ Global Symbols
 <LI><a href="#[13]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;customizeGrdualEndCbfunc
 </UL>
 
-<P><STRONG><a name="[1ba]"></a>stopSceneModeCheck</STRONG> (Thumb, 60 bytes, Stack size 16 bytes, command_center.o(i.stopSceneModeCheck))
-<BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = stopSceneModeCheck &rArr; updateStrobeDisplay &rArr; lcdDrawFontGbk16 &rArr; lcdDrawPoint &rArr; lcd_set_xy &rArr; write_data &rArr; hal_spi_send_byte
+<P><STRONG><a name="[1ba]"></a>stopSceneModeCheck</STRONG> (Thumb, 46 bytes, Stack size 8 bytes, command_center.o(i.stopSceneModeCheck))
+<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = stopSceneModeCheck &rArr; updateSceneDisplay &rArr; lcdDrawFontGbk16 &rArr; lcdDrawPoint &rArr; lcd_set_xy &rArr; write_data &rArr; hal_spi_send_byte
 </UL>
-<BR>[Calls]<UL><LI><a href="#[144]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateStrobeDisplay
-<LI><a href="#[143]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateSceneDisplay
+<BR>[Calls]<UL><LI><a href="#[143]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateSceneDisplay
 <LI><a href="#[84]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;turnOffAllLightEffect
 </UL>
 <BR>[Called By]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;keyFuncUpProcess
@@ -4375,7 +4374,6 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[145]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateBrightnessDisplay
 <LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;displaySystemMenu
-<LI><a href="#[1ba]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;stopSceneModeCheck
 <LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;keyFuncUpProcess
 <LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;keyFuncDownProcess
 </UL>

@@ -500,7 +500,7 @@ uint8 light_ctrl(uint8 *pPkg) {
 	uint8 index = 0;
 	uint16 flag = 0;
 //	LOG("\n%02x,%02x,%02x,%02x,%02x,%02x,  %02x,%02x,%02x,%02x,%02x\n",*(pPkg),*(pPkg+1),*(pPkg+2),*(pPkg+3),*(pPkg+4),*(pPkg+5),*(pPkg+6),*(pPkg+7),*(pPkg+8),*(pPkg+9),*(pPkg+10));
-//	uint32 temp=500000;
+//	uint32 temp=50000;
 //	while(--temp);
 
 	index++;	//len										//byte[0]
@@ -601,15 +601,18 @@ uint8 light_ctrl(uint8 *pPkg) {
 	switch (light.command) {
 	default:
 	case MODE_OFF:
+//		LOG("_\n MODE_OFF \n_");
 		light_off();
 		break;
 
 	case MODE_CCT:
+//		LOG("_\n MODE_CCT \n_");
 		updateColorTemp(&displayParams);
 
 		break;
 
 	case MODE_HSI:
+//		LOG("_\n MODE_HSI \n_");
 		color.cw = 0;
 		color.mw = 0;
 		if (light.brightness)
@@ -622,6 +625,7 @@ uint8 light_ctrl(uint8 *pPkg) {
 
 		break;
 	case MODE_FIXED:
+//		LOG("_\n MODE_FIXED \n_");
 		color.cw = 0;
 		color.mw = 0;
 		color.red = 0;

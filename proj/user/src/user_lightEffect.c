@@ -952,7 +952,7 @@ void startLightEffect(displayParamsStruct * disParams) {
 //			set2SimulatonModeStyleB();
 //		else if(disParams->preinstallEffectNo==9)
 //			set2SimulatonModeStyleC();
-	} else if (CustomizeEffect == disParams->arrowIndex) {
+	} else if (CustomizeEffect == disParams->arrowIndex||displayParams.customizeEffectFreq) {
 		if (GradualMode == displayParams.customizeEffectMode) {
 			customizeGradualEffect();
 		} else if (FlashMode == displayParams.customizeEffectMode) {
