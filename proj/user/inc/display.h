@@ -98,9 +98,9 @@ contact Bouth R&D at www.bough.com.hk
 #define LBBLUE           						0X2B12 //浅棕蓝色(选择条目的反色)
 
 
-#define	CHAR_COLOR					WHITE
+#define	CHAR_COLOR					0X7D7C	//浅蓝色
 #define	BACKGROUND_COLOR			BLACK
-#define	BATTERY_COLOR					WHITE
+#define	BATTERY_COLOR					CHAR_COLOR
 #define	OFF_CHAR_COLOR				GRAY
 
 #define SIZE 								16

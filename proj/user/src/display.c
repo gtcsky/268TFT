@@ -1048,7 +1048,7 @@ void lcdRectColorDraw(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16
 //}
 
 void logoDisplay(void) {
-	lcdDrawWidthTimesHeight(LOGO_START_X , LOGO_START_Y,32 ,32,WHITE, BACKGROUND_COLOR, (uint8 *) logoIconData);
+	lcdDrawWidthTimesHeight(LOGO_START_X , LOGO_START_Y,32 ,32,GRAYBLUE, BACKGROUND_COLOR, (uint8 *) logoIconData);
 	lcdDrawWidthTimesHeight(LOGO_START_X+32, LOGO_START_Y+8,96,16, WHITE, BACKGROUND_COLOR, (uint8 *) logoData);
 	hal_gpio_write(GPIO_LCD_BACKLIGHT, HI_STTS);
 

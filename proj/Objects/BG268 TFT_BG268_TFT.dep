@@ -223,7 +223,7 @@ I (.\user\inc\protocol.h)(0x61A8280E)
 I (..\components\driver\adc\adc.h)(0x5F93D9AA)
 I (..\components\driver\common\common.h)(0x5C8B3CCF)
 I (.\user\inc\battery.h)(0x5F927B96)
-I (.\user\inc\display.h)(0x61A71167)
+I (.\user\inc\display.h)(0x61A87456)
 I (.\user\inc\keys.h)(0x61A49882)
 I (.\user\inc\light.h)(0x619B09ED)
 I (.\user\inc\temp.h)(0x5F9BD4E7)
@@ -237,7 +237,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x5EC775FC)
 I (.\user\inc\user_flash.h)(0x612880A2)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x5EC77604)
 I (.\user\inc\user_utils.h)(0x609C89B2)
-F (.\user\src\display.c)(0x61A57751)(--c99 -c --cpu Cortex-M0 -D__MICROLIB --li -g -O2 --apcs=interwork --split_sections -I .\Source -I ..\components\ble\include -I ..\components\inc -I ..\components\ble\controller\include -I ..\components\ble\hci -I ..\components\osal\include -I ..\components\inc -I ..\components\common -I ..\components\ble\host -I ..\components\profiles\Roles -I ..\components\profiles\GATT -I ..\components\profiles\DevInfo -I ..\components\profiles\Batt -I ..\components\profiles\HID -I ..\components\profiles\ota_app -I ..\components\driver\common -I ..\components\driver\log -I ..\components\driver\gpio -I ..\components\driver\uart -I ..\components\driver\i2c -I ..\components\driver\adc -I ..\components\driver\clock -I ..\components\driver\pwm -I ..\components\driver\pwrmgr -I ..\components\driver\kscan -I ..\components\driver\spi -I ..\components\driver\flash -I ..\components\driver\watchdog -I ..\components\driver\timer -I ..\components\libraries\datetime -I ..\lib -I .\user\inc -DADV_NCONN_CFG=0x01   -DADV_CONN_CFG=0x02   -DSCAN_CFG=0x04    -DINIT_CFG=0x08   -DBROADCASTER_CFG=0x01 -DOBSERVER_CFG=0x02   -DPERIPHERAL_CFG=0x04   -DCENTRAL_CFG=0x08   -DHOST_CONFIG=0x4 -I.\RTE\_BG268_TFT-IC:\Keil_v5\Sky\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-IC:\Keil_v5\Sky\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\Device\ARM\ARMCM0\Include-D__UVISION_VERSION="531" -D_RTE_ -DARMCM0 -D_RTE_ -DOTA_MODE="SINGLE_BANK_NOFCT" -DCFG_CP -DCFG_QFN48 -DCFG_SLEEP_MODE="PWR_MODE_SLEEP" -DDEBUG_INFO="1" -DHAL_KEY="TRUE"-o .\objects\display.o --omf_browse .\objects\display.crf --depend .\objects\display.d)
+F (.\user\src\display.c)(0x61A878E9)(--c99 -c --cpu Cortex-M0 -D__MICROLIB --li -g -O2 --apcs=interwork --split_sections -I .\Source -I ..\components\ble\include -I ..\components\inc -I ..\components\ble\controller\include -I ..\components\ble\hci -I ..\components\osal\include -I ..\components\inc -I ..\components\common -I ..\components\ble\host -I ..\components\profiles\Roles -I ..\components\profiles\GATT -I ..\components\profiles\DevInfo -I ..\components\profiles\Batt -I ..\components\profiles\HID -I ..\components\profiles\ota_app -I ..\components\driver\common -I ..\components\driver\log -I ..\components\driver\gpio -I ..\components\driver\uart -I ..\components\driver\i2c -I ..\components\driver\adc -I ..\components\driver\clock -I ..\components\driver\pwm -I ..\components\driver\pwrmgr -I ..\components\driver\kscan -I ..\components\driver\spi -I ..\components\driver\flash -I ..\components\driver\watchdog -I ..\components\driver\timer -I ..\components\libraries\datetime -I ..\lib -I .\user\inc -DADV_NCONN_CFG=0x01   -DADV_CONN_CFG=0x02   -DSCAN_CFG=0x04    -DINIT_CFG=0x08   -DBROADCASTER_CFG=0x01 -DOBSERVER_CFG=0x02   -DPERIPHERAL_CFG=0x04   -DCENTRAL_CFG=0x08   -DHOST_CONFIG=0x4 -I.\RTE\_BG268_TFT-IC:\Keil_v5\Sky\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-IC:\Keil_v5\Sky\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\Device\ARM\ARMCM0\Include-D__UVISION_VERSION="531" -D_RTE_ -DARMCM0 -D_RTE_ -DOTA_MODE="SINGLE_BANK_NOFCT" -DCFG_CP -DCFG_QFN48 -DCFG_SLEEP_MODE="PWR_MODE_SLEEP" -DDEBUG_INFO="1" -DHAL_KEY="TRUE"-o .\objects\display.o --omf_browse .\objects\display.crf --depend .\objects\display.d)
 I (..\components\inc\types.h)(0x61A4A19C)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x5EC775FC)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x5FE99213)
@@ -258,7 +258,7 @@ I (C:\Keil_v5\Sky\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include\cms
 I (C:\Keil_v5\Sky\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include\cmsis_compiler.h)(0x5E8306C2)
 I (C:\Keil_v5\Sky\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include\cmsis_armcc.h)(0x5E8ED122)
 I (C:\Keil_v5\Sky\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\Device\ARM\ARMCM0\Include\system_ARMCM0.h)(0x5E8ED12A)
-I (.\user\inc\display.h)(0x61A71167)
+I (.\user\inc\display.h)(0x61A87456)
 I (.\user\inc\user_character.h)(0x61A47B0D)
 I (..\components\driver\pwrmgr\pwrmgr.h)(0x5C8B3CCF)
 I (..\components\common\hal_mcu.h)(0x5F923166)
@@ -304,7 +304,7 @@ I (..\components\driver\pwm\pwm.h)(0x5F5F081A)
 I (.\user\inc\command_center.h)(0x61A58BA6)
 I (..\components\driver\pwrmgr\pwrmgr.h)(0x5C8B3CCF)
 I (..\components\common\hal_mcu.h)(0x5F923166)
-I (.\user\inc\display.h)(0x61A71167)
+I (.\user\inc\display.h)(0x61A87456)
 I (.\user\inc\user_lightEffect.h)(0x619B44EC)
 F (.\user\src\temp.c)(0x619C9672)(--c99 -c --cpu Cortex-M0 -D__MICROLIB --li -g -O2 --apcs=interwork --split_sections -I .\Source -I ..\components\ble\include -I ..\components\inc -I ..\components\ble\controller\include -I ..\components\ble\hci -I ..\components\osal\include -I ..\components\inc -I ..\components\common -I ..\components\ble\host -I ..\components\profiles\Roles -I ..\components\profiles\GATT -I ..\components\profiles\DevInfo -I ..\components\profiles\Batt -I ..\components\profiles\HID -I ..\components\profiles\ota_app -I ..\components\driver\common -I ..\components\driver\log -I ..\components\driver\gpio -I ..\components\driver\uart -I ..\components\driver\i2c -I ..\components\driver\adc -I ..\components\driver\clock -I ..\components\driver\pwm -I ..\components\driver\pwrmgr -I ..\components\driver\kscan -I ..\components\driver\spi -I ..\components\driver\flash -I ..\components\driver\watchdog -I ..\components\driver\timer -I ..\components\libraries\datetime -I ..\lib -I .\user\inc -DADV_NCONN_CFG=0x01   -DADV_CONN_CFG=0x02   -DSCAN_CFG=0x04    -DINIT_CFG=0x08   -DBROADCASTER_CFG=0x01 -DOBSERVER_CFG=0x02   -DPERIPHERAL_CFG=0x04   -DCENTRAL_CFG=0x08   -DHOST_CONFIG=0x4 -I.\RTE\_BG268_TFT-IC:\Keil_v5\Sky\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\CMSIS\Core\Include-IC:\Keil_v5\Sky\AppData\Local\Arm\Packs\ARM\CMSIS\5.7.0\Device\ARM\ARMCM0\Include-D__UVISION_VERSION="531" -D_RTE_ -DARMCM0 -D_RTE_ -DOTA_MODE="SINGLE_BANK_NOFCT" -DCFG_CP -DCFG_QFN48 -DCFG_SLEEP_MODE="PWR_MODE_SLEEP" -DDEBUG_INFO="1" -DHAL_KEY="TRUE"-o .\objects\temp.o --omf_browse .\objects\temp.crf --depend .\objects\temp.d)
 I (..\components\inc\types.h)(0x61A4A19C)
