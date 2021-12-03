@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\BG268_TFT.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\BG268_TFT.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Thu Dec 02 18:16:24 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Fri Dec 03 18:20:21 2021
 <BR><P>
 <H3>Maximum Stack Usage =        488 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1266,7 +1266,6 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CCS_keysChange_handle
 <LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;command_center_ProcessEvent
-<LI><a href="#[123]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;command_center_Init
 <LI><a href="#[1ee]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;protocol_uartCB_Handle
 </UL>
 
@@ -1789,7 +1788,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[1f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rc32k_tracking_check
 </UL>
 
-<P><STRONG><a name="[104]"></a>battVoltCompensation</STRONG> (Thumb, 500 bytes, Stack size 40 bytes, command_center.o(i.battVoltCompensation))
+<P><STRONG><a name="[104]"></a>battVoltCompensation</STRONG> (Thumb, 504 bytes, Stack size 40 bytes, command_center.o(i.battVoltCompensation))
 <BR><BR>[Stack]<UL><LI>Max Depth = 192<LI>Call Chain = battVoltCompensation &rArr; getChargingCurrentByVolt &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; __aeabi_llsr
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
@@ -1941,7 +1940,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[18]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_hw_config
 </UL>
 
-<P><STRONG><a name="[123]"></a>command_center_Init</STRONG> (Thumb, 170 bytes, Stack size 24 bytes, command_center.o(i.command_center_Init))
+<P><STRONG><a name="[123]"></a>command_center_Init</STRONG> (Thumb, 158 bytes, Stack size 24 bytes, command_center.o(i.command_center_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 360<LI>Call Chain = command_center_Init &rArr; CCS_Systems_on &rArr; CCS_DATATRANSFER_PROCESS &rArr; light_ctrl &rArr; startLightEffect &rArr; customizeGradualEffect &rArr; loadTargetPwmData &rArr; loadTargetRGBValue &rArr; hsb2Rgb &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; __aeabi_llsr
 </UL>
 <BR>[Calls]<UL><LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;hal_gpio_pull_set
@@ -1957,7 +1956,6 @@ Global Symbols
 <LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;hal_gpio_pin_init
 <LI><a href="#[128]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;display_Init
 <LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CCS_Systems_on
-<LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CCS_Systems_off
 <LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 </UL>
 <BR>[Called By]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osalInitTasks
@@ -2112,8 +2110,8 @@ Global Symbols
 <LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;command_center_ProcessEvent
 </UL>
 
-<P><STRONG><a name="[8d]"></a>displaySystemMenu</STRONG> (Thumb, 332 bytes, Stack size 24 bytes, display.o(i.displaySystemMenu))
-<BR><BR>[Stack]<UL><LI>Max Depth = 216<LI>Call Chain = displaySystemMenu &rArr; updateBrightnessDisplay &rArr; updateHuesDisplay &rArr; lcdDrawSingleCharGbk16 &rArr; lcdDrawFontGbk16 &rArr; lcdDrawPoint &rArr; lcd_set_xy &rArr; write_data &rArr; hal_spi_send_byte
+<P><STRONG><a name="[8d]"></a>displaySystemMenu</STRONG> (Thumb, 356 bytes, Stack size 32 bytes, display.o(i.displaySystemMenu))
+<BR><BR>[Stack]<UL><LI>Max Depth = 224<LI>Call Chain = displaySystemMenu &rArr; updateBrightnessDisplay &rArr; updateHuesDisplay &rArr; lcdDrawSingleCharGbk16 &rArr; lcdDrawFontGbk16 &rArr; lcdDrawPoint &rArr; lcd_set_xy &rArr; write_data &rArr; hal_spi_send_byte
 </UL>
 <BR>[Calls]<UL><LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;phy_printf
 <LI><a href="#[13e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;logoDisplay
@@ -3472,7 +3470,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setBattLevel
 </UL>
 
-<P><STRONG><a name="[1ee]"></a>protocol_uartCB_Handle</STRONG> (Thumb, 568 bytes, Stack size 40 bytes, command_center.o(i.protocol_uartCB_Handle))
+<P><STRONG><a name="[1ee]"></a>protocol_uartCB_Handle</STRONG> (Thumb, 506 bytes, Stack size 40 bytes, command_center.o(i.protocol_uartCB_Handle))
 <BR><BR>[Stack]<UL><LI>Max Depth = 360<LI>Call Chain = protocol_uartCB_Handle &rArr; factoryModeRGBOn &rArr; CCS_DATATRANSFER_PROCESS &rArr; light_ctrl &rArr; startLightEffect &rArr; customizeGradualEffect &rArr; loadTargetPwmData &rArr; loadTargetRGBValue &rArr; hsb2Rgb &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; __aeabi_llsr
 </UL>
 <BR>[Calls]<UL><LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2uiz
@@ -4517,7 +4515,7 @@ Local Symbols
 <LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CCS_Systems_on
 </UL>
 
-<P><STRONG><a name="[6c]"></a>CCS_EventsPro_TestMode</STRONG> (Thumb, 620 bytes, Stack size 32 bytes, command_center.o(i.CCS_EventsPro_TestMode))
+<P><STRONG><a name="[6c]"></a>CCS_EventsPro_TestMode</STRONG> (Thumb, 614 bytes, Stack size 32 bytes, command_center.o(i.CCS_EventsPro_TestMode))
 <BR><BR>[Stack]<UL><LI>Max Depth = 352<LI>Call Chain = CCS_EventsPro_TestMode &rArr; factoryModeRGBOn &rArr; CCS_DATATRANSFER_PROCESS &rArr; light_ctrl &rArr; startLightEffect &rArr; customizeGradualEffect &rArr; loadTargetPwmData &rArr; loadTargetRGBValue &rArr; hsb2Rgb &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; __aeabi_llsr
 </UL>
 <BR>[Calls]<UL><LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HW_RESET_MCU

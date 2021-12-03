@@ -269,11 +269,11 @@ void command_center_Init(uint8 task_id){
 	hal_pwrmgr_register(MOD_LCD_On,NULL,NULL);
 	fIsInvalidMacAddr=invalidMacAddrCheck();
 	readExceptionStts();
-//		CCS_Systems_on();
-	if(CCS_MODE_SYSTEM)
 		CCS_Systems_on();
-	else
-		CCS_Systems_off();
+//	if(CCS_MODE_SYSTEM)
+//		CCS_Systems_on();
+//	else
+//		CCS_Systems_off();
 }
 
 /*********************************************************************
@@ -2588,12 +2588,12 @@ void HW_RESET_MCU(bool backup) {
   *  @note :
   ************************************************************************************************************/
 void versionDisplay(void) {
-	uint8 fw[] = { "FW:21120201" };
+	uint8 fw[] = { "FW:21120301" };
 	systems_param_Get_param(ITEM_FIRMWARE_REV, &fw[2], &fw[3]);
 	fw[2] = ':';
 	OLED_ShowString(2, 2, fw);
 
-	uint8 sw[] = { "SW:20211202" };
+	uint8 sw[] = { "SW:20211203" };
 //	systems_param_Get_param(ITEM_SOFTWARE_REV, &sw[2], &fw[3]);
 //	sw[2] = ':';
 	OLED_ShowString(2, 4, sw);

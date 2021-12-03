@@ -98,10 +98,12 @@ contact Bouth R&D at www.bough.com.hk
 #define LBBLUE           						0X2B12 //浅棕蓝色(选择条目的反色)
 
 
-#define	CHAR_COLOR					0X7D7C	//浅蓝色
+#define	CHAR_COLOR					0x4E9E//0X7D7C	//浅蓝色
 #define	BACKGROUND_COLOR			BLACK
 #define	BATTERY_COLOR					CHAR_COLOR
 #define	OFF_CHAR_COLOR				GRAY
+#define	CLOCK_CHAR					0xBF89
+
 
 #define SIZE 								16
 #define XLevelL							0x02
@@ -284,6 +286,13 @@ contact Bouth R&D at www.bough.com.hk
 #define	LOGO_START_Y					(LCD_Y_START+50)
 #define	LOGO_WIDTH					230
 #define	LOGO_HEITHT					32
+
+
+
+
+#define	ICON_CLOCK_X					LEVEL_ADDRESS_X
+#define	ICON_CLOCK_Y					LCD_Y_START
+#define	CLOCK_DATA_INDEX				(2*32)
 /*********************************************************************
 * TYPEDEFS
 */

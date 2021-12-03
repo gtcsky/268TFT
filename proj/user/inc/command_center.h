@@ -130,7 +130,7 @@ contact Bouth R&D at www.bough.com.cn
 //#define CCS_TEST_MODE_EVT						0x4000
 
 
-#define	BATTERY_RESISTANCE				0.080		//(3.90-3.68)/1.85	for charging with protected board
+#define	BATTERY_RESISTANCE				0.180		//(3.90-3.68)/1.85	for charging with protected board
 #define 	DISCHARGE_RESISTENCE				0.080		//110mR for discharging
 
 #define	CHARGE_VOLT_DIVIATION			0.06//		0.06V
