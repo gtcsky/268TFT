@@ -109,6 +109,7 @@ contact Bouth R&D at www.bough.com.cn
 #define TIMER_LIGHT_EFFECT						0x0020
 //#define CCS_LEDFIXMODE_EVT						0x0040
 //#define CCS_LEDEFFECTMODE_EVT					0x0080
+#define	CSS_TIMER_50MS_EVT						0x0400
 
 #define CCS_TEMP_CHECK_EVT						0x0100
 #define CCS_TEMP_VALUE_EVT						0x0200
@@ -142,10 +143,10 @@ contact Bouth R&D at www.bough.com.cn
 #define 	RED_POWER_RATING					2.29	//2.29=4.17*0.55
 #define 	GREEN_POWER_RATING				2.67	//2.67=4.17*0.64
 #define 	BLUE_POWER_RATING				2.87// 2.87=4.17*0.69
-#define	CW_POWER_RATING					5.21	//5.21=4.43W/MAX_CW_DUTY    		4.43W=4.10v*1.08A
-#define	MW_POWER_RATING					5.30	//5.30=4.51/MAX_CW_DUTY       		4.51W=4.10v*1.10A
-#define	MAX_CW_DUTY						(1.0)
-#define	MAX_MW_DUTY						(1.0)
+#define	CW_POWER_RATING					8.07	//5.21=4.43W/MAX_CW_DUTY    		6.56W=4.10v*1.60A
+#define	MW_POWER_RATING					8.07	//5.30=4.51/MAX_CW_DUTY       		6.56W=4.10v*1.60A
+#define	MAX_CW_DUTY						(PWM_MAX_CW*1.0/PWM_MAX_COUNT)
+#define	MAX_MW_DUTY						(PWM_MAX_CW*1.0/PWM_MAX_COUNT)
 
 #define	MAX_CHARGE_CURRENT				1.9					//2.0A
 #define	KEEP_VOLT_THRESHOLD				4.05					//4.00V
@@ -311,6 +312,19 @@ void keyBrightnessDecProcess(u16 *flag);
  *
  ****************************************************/
 void keyBrightnessIncProcess(u16 *flag);
+
+/***********************************************************************************************************
+  *  @brief
+  *
+  *  @param [in] :
+  *
+  *  @param [out] :
+  *
+  *  @return :
+  *
+  *  @note :
+  ************************************************************************************************************/
+bool		getSysStatus(void);
 
 void setModeInfo(u16 *flag, uint8 *cmd);
 /*************************** (C) COPYRIGHT 2012 Bough*****END OF FILE*****************************/

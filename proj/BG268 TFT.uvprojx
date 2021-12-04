@@ -463,6 +463,11 @@
               <FileType>1</FileType>
               <FilePath>.\user\src\user_utils.c</FilePath>
             </File>
+            <File>
+              <FileName>user_remainTimer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\user\src\user_remainTimer.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

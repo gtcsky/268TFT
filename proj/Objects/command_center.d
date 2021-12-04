@@ -39,14 +39,15 @@
 .\objects\command_center.o: .\user\inc\bleSmartPeripheral.h
 .\objects\command_center.o: .\user\inc\simpleGATTprofile.h
 .\objects\command_center.o: .\user\inc\command_center.h
-.\objects\command_center.o: .\user\inc\protocol_uart.h
+.\objects\command_center.o: .\user\inc\user_remainTimer.h
 .\objects\command_center.o: .\user\inc\protocol.h
 .\objects\command_center.o: ..\components\driver\adc\adc.h
 .\objects\command_center.o: ..\components\driver\common\common.h
+.\objects\command_center.o: .\user\inc\light.h
+.\objects\command_center.o: .\user\inc\protocol_uart.h
 .\objects\command_center.o: .\user\inc\battery.h
 .\objects\command_center.o: .\user\inc\display.h
 .\objects\command_center.o: .\user\inc\keys.h
-.\objects\command_center.o: .\user\inc\light.h
 .\objects\command_center.o: .\user\inc\temp.h
 .\objects\command_center.o: ..\components\common\hal_mcu.h
 .\objects\command_center.o: ..\components\driver\pwrmgr\pwrmgr.h

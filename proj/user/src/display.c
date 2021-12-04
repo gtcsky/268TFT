@@ -1085,13 +1085,17 @@ void displaySystemMenu(displayParamsStruct * disParams){
 	if (IdleIamgeDisplay==disParams->DisplayModeIndex ) {
 		logoDisplay();
 		batterDisplay(disParams->battLv);
+		lcdDrawWidthTimesHeight(ICON_CLOCK_X,ICON_CLOCK_Y,16,16,CLOCK_CHAR,BACKGROUND_COLOR,(uint8 *)(&special16Data[CLOCK_DATA_INDEX]));
+		updateRemainingTimeByValue(disParams->remainingTime);
+
 		lcdDrawLine(LINE_ADDRESS_X,LINE_ADDRESS_Y,LCD_W - 1,LINE_ADDRESS_Y,YELLOW);
 		lcdDrawLine(LINE_ADDRESS_X+4,LINE_ADDRESS_Y+1,LCD_W - 1,LINE_ADDRESS_Y+1,YELLOW);
 		lcdDrawLine(LINE_ADDRESS_X+8,LINE_ADDRESS_Y+2,LCD_W - 1,LINE_ADDRESS_Y+2,YELLOW);
 		lcdDrawFontGbk16(LEVEL_ADDRESS_X,LEVEL_ADDRESS_Y,CHAR_COLOR,BACKGROUND_COLOR,"Level");
 		lcdDrawFontGbk16(TEMP_ADDRESS_X,TEMP_ADDRESS_Y,CHAR_COLOR,BACKGROUND_COLOR,"Te");
 		lcdDrawWidthTimesHeight(TEMP_ADDRESS_X+16,TEMP_ADDRESS_Y,16,16,CHAR_COLOR,BACKGROUND_COLOR,(uint8 *)(&special16Data[32]));
-		lcdDrawWidthTimesHeight(ICON_CLOCK_X,ICON_CLOCK_Y,16,16,CLOCK_CHAR,BACKGROUND_COLOR,(uint8 *)(&special16Data[CLOCK_DATA_INDEX]));
+
+
 		lcdDrawFontGbk16(TEMP_ADDRESS_X+16+13,TEMP_ADDRESS_Y,CHAR_COLOR,BACKGROUND_COLOR,"p.");
 		lcdDrawFontGbk16(COLOR_ADDRESS_X,COLOR_ADDRESS_Y,CHAR_COLOR,BACKGROUND_COLOR,"Color");
 		lcdDrawFontGbk16(SCENE_ADDRESS_X,SCENE_ADDRESS_Y,CHAR_COLOR,BACKGROUND_COLOR,"Scene");
@@ -1161,57 +1165,6 @@ void batteryPercentDisplay(uint8 level) {
 //	}
 }
 
-/*****************************************************************************************
- *
- *剩余时间显示
- *
-*/
-void updateRemainingTimeByValue(uint16 data)
-{
-//	OLED_ShowChar(ValueOfClock_X, Icon_Clock_Y, ' ');
-//	OLED_ShowChar(ValueOfClock_X + 8, Icon_Clock_Y, ' ');
-//	OLED_ShowChar(ValueOfClock_X + 16, Icon_Clock_Y, ' ');
-//	OLED_ShowChar(ValueOfClock_X + 24, Icon_Clock_Y, ' ');
-//	
-//	displayParams.remainingTime=data;
-//	if ( data < 10 )
-//	{
-//		OLED_ShowNum(ValueOfClock_X,Icon_Clock_Y, data);
-//		OLED_ShowChar(ValueOfClock_X+8,Icon_Clock_Y,LOW_CASE_m);
-//	}
-//	else if(data<60)
-//	{
-//		OLED_ShowNum(ValueOfClock_X,Icon_Clock_Y,data/10);
-//		OLED_ShowNum(ValueOfClock_X+8,Icon_Clock_Y, data%10);
-//		OLED_ShowChar(ValueOfClock_X+16,Icon_Clock_Y,LOW_CASE_m);
-//	}
-//	else if(data<600)	//<10h
-//	{
-//		OLED_ShowNum(ValueOfClock_X,Icon_Clock_Y,data/60);
-//		OLED_ShowChar(ValueOfClock_X+8, Icon_Clock_Y, '.');
-//		OLED_ShowNum(ValueOfClock_X+12,Icon_Clock_Y,data*10/60%10);
-//		OLED_ShowChar(ValueOfClock_X+20,Icon_Clock_Y,LOW_CASE_h);
-//	}
-//	else if(data<6000)	//<100h
-//	{
-//		OLED_ShowNum(ValueOfClock_X,Icon_Clock_Y,data/60);
-//		OLED_ShowChar(ValueOfClock_X+16,Icon_Clock_Y,LOW_CASE_h);
-//	}
-//	else if(data<59941)	//<999
-//	{
-//		OLED_ShowNum(ValueOfClock_X,Icon_Clock_Y,data/6000);
-//		OLED_ShowNum(ValueOfClock_X+8,Icon_Clock_Y,data/600%10);
-//		OLED_ShowNum(ValueOfClock_X+16,Icon_Clock_Y,data/60%10);
-//		OLED_ShowChar(ValueOfClock_X+24,Icon_Clock_Y,LOW_CASE_h);
-//	}
-//	else
-//	{
-//		OLED_ShowNum(ValueOfClock_X,Icon_Clock_Y,9);
-//		OLED_ShowNum(ValueOfClock_X+8,Icon_Clock_Y,9);
-//		OLED_ShowNum(ValueOfClock_X+16,Icon_Clock_Y,9);
-//		OLED_ShowChar(ValueOfClock_X+24,Icon_Clock_Y,LOW_CASE_h);
-//	}
-}
 
 /*********************************************************************
  * @fn		batterDisplay
@@ -1728,6 +1681,30 @@ void lcdDrawWidthTimesHeight(uint16_t x, uint16_t y, uint16 width, uint16 heitht
 		}
 	}
 
+}
+
+/*****************************************************************************************
+ *
+ *剩余时间显示
+ *
+ ******************************************************************************************/
+void updateRemainingTimeByValue(uint16 data) {
+#if(REMAIN_TIME_DISPLAY==1)
+	displayParams.remainingTime = data;
+	memset(charArray, 0, sizeof(charArray));
+	if (CCS_GET_ChargeStatus()||!displayParams.brightness) {		//charging
+		lcdDrawFontGbk16(ICON_CLOCK_X + 16, ICON_CLOCK_Y, OFF_CHAR_COLOR, BACKGROUND_COLOR, " -----");
+	} else {
+		sprintf(charArray, "%2dh%02dm", data / 60, data % 60);
+		lcdDrawFontGbk16(ICON_CLOCK_X + 16, ICON_CLOCK_Y, GREEN, BACKGROUND_COLOR, charArray);
+	}
+#endif
+}
+
+void	updateRemainingTime(displayParamsStruct * disParams){
+#if(REMAIN_TIME_DISPLAY==1)
+	updateRemainingTimeByValue(disParams->remainingTime);
+#endif
 }
 
 /*************************** (C) COPYRIGHT 2012 Bough*****END OF FILE*****************************/

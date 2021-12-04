@@ -75,6 +75,7 @@ contact Bouth R&D at www.bough.com.cn
 #include "bleSmartPeripheral.h"
 #include "simpleGATTprofile.h"
 #include "command_center.h"
+#include "user_remainTimer.h"
 #include "protocol_uart.h"
 #include "battery.h"
 #include "display.h"
@@ -489,67 +490,68 @@ void restartBattInfoCollection(void) {
  *  	电压补偿.灯开启时的电压补偿
  *
  ***************************************************************************/
-void chkLightEffectModeVoltCompensation(float *volt ,uint8 *flag){	float vtMin=5.0;
-int i=0;
+void chkLightEffectModeVoltCompensation(float *volt, uint8 *flag) {
+	float vtMin = 5.0;
+	int i = 0;
 
-battInfo.battArray[battInfo.battRecordIndex] = *volt;
-if (++battInfo.battRecordIndex >= BATT_ARRAY_SIZE)
-	battInfo.battRecordIndex = 0;
-if(!battInfo.fIsFirst5TimesVoltGot){
-	battInfo.vRecordCnt++;
-	if(battInfo.vRecordCnt>=(GENERATE_BATT_VOLT_TIMES)){
-		battInfo.fIsFirst5TimesVoltGot=true;
-		battInfo.vRecordCnt=0;
-	}
-}
-
-if(fIsLightEffectOn){
-	//LOG("\n  vLightEfftectVoltDectCn%d, \n",battInfo.vLightEfftectVoltDectCnt);
-	if(++battInfo.vLightEfftectVoltDectCnt>BATT_ARRAY_SIZE){
-		battInfo.vLightEfftectVoltDectCnt=PARAMS_DATA_RESET;
-		for(;i<BATT_ARRAY_SIZE;i++){
-			if(vtMin>battInfo.battArray[i]){
-				vtMin=battInfo.battArray[i];
-			}
+	battInfo.battArray[battInfo.battRecordIndex] = *volt;
+	if (++battInfo.battRecordIndex >= BATT_ARRAY_SIZE)
+		battInfo.battRecordIndex = 0;
+	if (!battInfo.fIsFirst5TimesVoltGot) {
+		battInfo.vRecordCnt++;
+		if (battInfo.vRecordCnt >= (GENERATE_BATT_VOLT_TIMES)) {
+			battInfo.fIsFirst5TimesVoltGot = true;
+			battInfo.vRecordCnt = 0;
 		}
-		*volt=vtMin;
-		*flag=1;
-	}else{
-		*flag=0;
 	}
-}else{
-	//LOG("\n  1st=%d, 5times=%d\n",battInfo.fIsPowerOnFirstVoltGot,battInfo.fIsFirst5TimesVoltGot);
-	if (!battInfo.fIsPowerOnFirstVoltGot) {
-		battInfo.fIsPowerOnFirstVoltGot = true;
-		*flag = 1;										//user the voltage immediately
-	} else if (battInfo.fIsFirst5TimesVoltGot) {
-		float vtMax=0;
-		float vtTotal=0;
-		//LOG("\n battRecordIndex=%d  \n",battInfo.battRecordIndex);
-		uint8 backIndex=(battInfo.battRecordIndex)?(battInfo.battRecordIndex-1):(BATT_ARRAY_SIZE-1);
-		uint8 readIndex=0;
-		//LOG("\n backIndex=%d  \n",backIndex);
-		for(uint8 i=0;i<GENERATE_BATT_VOLT_TIMES;i++){
-			readIndex=((backIndex-i)>=0)?(backIndex-i):(backIndex+BATT_ARRAY_SIZE-1-i);
-			if(vtMin>battInfo.battArray[readIndex]){
-				vtMin=battInfo.battArray[readIndex];
+
+	if (fIsLightEffectOn) {
+		//LOG("\n  vLightEfftectVoltDectCn%d, \n",battInfo.vLightEfftectVoltDectCnt);
+		if (++battInfo.vLightEfftectVoltDectCnt > BATT_ARRAY_SIZE) {
+			battInfo.vLightEfftectVoltDectCnt = PARAMS_DATA_RESET;
+			for (; i < BATT_ARRAY_SIZE; i++) {
+				if (vtMin > battInfo.battArray[i]) {
+					vtMin = battInfo.battArray[i];
+				}
 			}
-			if(vtMax<battInfo.battArray[readIndex]){
-				vtMax=battInfo.battArray[readIndex];
-			}
-			vtTotal+=battInfo.battArray[readIndex];
+			*volt = vtMin;
+			*flag = 1;
+		} else {
+			*flag = 0;
+		}
+	} else {
+		//LOG("\n  1st=%d, 5times=%d\n",battInfo.fIsPowerOnFirstVoltGot,battInfo.fIsFirst5TimesVoltGot);
+		if (!battInfo.fIsPowerOnFirstVoltGot) {
+			battInfo.fIsPowerOnFirstVoltGot = true;
+			*flag = 1;										//user the voltage immediately
+		} else if (battInfo.fIsFirst5TimesVoltGot) {
+			float vtMax = 0;
+			float vtTotal = 0;
+			//LOG("\n battRecordIndex=%d  \n",battInfo.battRecordIndex);
+			uint8 backIndex = (battInfo.battRecordIndex) ? (battInfo.battRecordIndex - 1) : (BATT_ARRAY_SIZE - 1);
+			uint8 readIndex = 0;
+			//LOG("\n backIndex=%d  \n",backIndex);
+			for (uint8 i = 0; i < GENERATE_BATT_VOLT_TIMES; i++) {
+				readIndex = ((backIndex - i) >= 0) ? (backIndex - i) : (backIndex + BATT_ARRAY_SIZE - 1 - i);
+				if (vtMin > battInfo.battArray[readIndex]) {
+					vtMin = battInfo.battArray[readIndex];
+				}
+				if (vtMax < battInfo.battArray[readIndex]) {
+					vtMax = battInfo.battArray[readIndex];
+				}
+				vtTotal += battInfo.battArray[readIndex];
 //				LOG("\ni=%d\n",readIndex);
 //				LogFloat(battInfo.battArray[readIndex],3);
-		}
-		vtTotal-=vtMax;
-		vtTotal-=vtMin;
-		*volt=vtTotal/(GENERATE_BATT_VOLT_TIMES-2);
+			}
+			vtTotal -= vtMax;
+			vtTotal -= vtMin;
+			*volt = vtTotal / (GENERATE_BATT_VOLT_TIMES - 2);
 //			LogFloat(*volt,3);
-		*flag = 1;
-	} else {
-		*flag = 1;
-	}
-}}
+			*flag = 1;
+		} else {
+			*flag = 1;
+		}
+	}}
 
 void	 startLightEffectEvent(void){
 	osal_start_reload_timer( command_center_TaskID, TIMER_LIGHT_EFFECT , 5);
@@ -562,6 +564,8 @@ void startCharging(void) {
 	if (!CCS_MODE_SYSTEM) {
 		fullyParams.fullyCheckIndex = WAIT_FIRST_VOLT;
 		fullyParams.counter = VOLT_CHECK_WAIT_TIMES_3;
+	}else{
+			fIsUpdateRemainTimer = 1;
 	}
 	//battInfo.fBattFullyWaiting=0;
 	restartBattInfoCollection();
@@ -588,6 +592,9 @@ void setBatteryFully(void) {
 void	 stopCharging(void){
 	Flag_Status_Charge = Non_Charging;
 	displayParams.battLv = battInfo.vCurrentBattLv;
+	if (CCS_MODE_SYSTEM) {
+			fIsUpdateRemainTimer = 1;
+	}
 	if (!fullyParams.fullyCheckIndex)
 		memset(&fullyParams, 0, sizeof(fullyParams));
 }
@@ -653,6 +660,26 @@ uint16 command_center_ProcessEvent(uint8 task_id, uint16 events) {
 		return (events ^ TIMER_LIGHT_EFFECT);
 	}
 
+	if (events & CSS_TIMER_50MS_EVT) {
+		static uint8 time50msCnt = 0;
+		if (CCS_MODE_SYSTEM) {
+			if (fIsUpdateRemainTimer && vBattCompensation) {
+				fIsUpdateRemainTimer = 0;
+				vCalcTime1s = 0;
+				if (displayParams.brightness) {
+					calcRemainTime(TRUE);
+				} else {
+					updateRemainingTimeByValue(displayParams.remainingTime);
+				}
+			}
+			if (++time50msCnt == 20) {
+				time50msCnt = 0;
+				freshRemainTimeCheck();
+			}
+		}
+		return (events ^ CSS_TIMER_50MS_EVT);
+	}
+
 	if (events & CCS_BATT_CHECK_EVT) {
 		batt_measure();
 		return (events ^ CCS_BATT_CHECK_EVT);
@@ -664,8 +691,6 @@ uint16 command_center_ProcessEvent(uint8 task_id, uint16 events) {
 #if(VOLTAGE_INFO_SHOW==1)
 		LOG("\n battVol=%d.%dv\n",batt_vol/1000,batt_vol%1000);
 #endif
-//		temperatureDisplay(64,2,batt_perc);
-//		temperatureDisplay(64,4,batt_vol);
 
 		if (TESTMODE && TESTMODE != BurnInTest) {
 			displayFloat(0, 0, batt_vol * 0.001, 2, 'v');
@@ -679,7 +704,6 @@ uint16 command_center_ProcessEvent(uint8 task_id, uint16 events) {
 			if (fIsNeedUpdateBattLv) {
 				setBattLevel(&tempLv, &vBattVolt, &battInfo.vCurrentBattLv);
 			}
-//				temperatureDisplay(0, 3, batt_vol);
 			vBattCompensation = vBattVolt;
 			displayParams.battLv = battInfo.vCurrentBattLv;
 			if (!fIsLightEffectOn || (fIsLightEffectOn && fIsNeedUpdateBattLv)) {
@@ -712,7 +736,8 @@ uint16 command_center_ProcessEvent(uint8 task_id, uint16 events) {
 			} else {
 				battInfo.vDisplayBattLv = 0;
 				//displayParams.battLv = vCurrentBattLv;
-				stopCharging();
+				if(Flag_Status_Charge)
+					stopCharging();
 				//if(!fIsSystemHot)
 				batterDisplay(battInfo.vCurrentBattLv);
 			}
@@ -1055,7 +1080,7 @@ void restoreFromCustomizeModeCheck(uint16 * flag) {
  *
  ****************************************************/
 void	  keyFuncUpProcess(u16 *flag){
-
+	fIsUpdateRemainTimer=1;
 	if (HuesSetting == displayParams.arrowIndex) {
 		if (displayParams.hues < MAX_Hues) {
 			displayParams.hues++;
@@ -1138,6 +1163,7 @@ void	  keyFuncDownProcess(u16 *flag){
 //		 LedStruct.pfncustomizeEffectOverCallBack();
 //		 turnOffAllLightEffect();
 //	}
+	fIsUpdateRemainTimer=1;
 	if (HuesSetting == displayParams.arrowIndex)	{
 		if (displayParams.hues > Min_Hues)	{
 			displayParams.hues--;
@@ -2161,8 +2187,8 @@ void CCS_Systems_on(void)
 //	}else{
 //		displayParams.vModeIndex=ColorTempSetting;
 //	LOG("\n VmodeIndex=%d   index=%d  No=%d\n",displayParams.vModeIndex,displayParams.style1Value,displayParams.preinstallEffectNo);
-	uint16 temp =10000;
-	while (temp--);
+//	uint16 temp =10000;
+//	while (temp--);
 	if(displayParams.vModeIndex==ColorTempSetting){
 			flag = CCS_FLAG_TEMPERATURE;
 			displayParams.command = CCS_LIGHT_MODE_CCT;
@@ -2196,6 +2222,8 @@ void CCS_Systems_on(void)
 	displaySystemMenu(&displayParams);
 	updateArrowDisplay(&displayParams);
 	updateDeviceInfo2Flash();
+	osal_start_reload_timer(command_center_TaskID, CSS_TIMER_50MS_EVT, 50);
+	fIsUpdateRemainTimer=1;
 }
 /*********************************************************************
  * @fn      CCS_Systems_off
@@ -2253,6 +2281,7 @@ void CCS_Systems_off(void)
 //	osal_stop_timerEx( command_center_TaskID, CCS_LEDFIXMODE_EVT );
 	osal_stop_timerEx(command_center_TaskID, CCS_TEMP_CHECK_EVT);
 	osal_stop_timerEx(command_center_TaskID, CCS_TEMP_VALUE_EVT);
+	osal_stop_timerEx(command_center_TaskID, CSS_TIMER_50MS_EVT);
 
 	//EffectModeLedStatus = CCS_EFFECTMODE_LEDOFF;
 
@@ -2588,12 +2617,12 @@ void HW_RESET_MCU(bool backup) {
   *  @note :
   ************************************************************************************************************/
 void versionDisplay(void) {
-	uint8 fw[] = { "FW:21120301" };
+	uint8 fw[] = { "FW:21120401" };
 	systems_param_Get_param(ITEM_FIRMWARE_REV, &fw[2], &fw[3]);
 	fw[2] = ':';
 	OLED_ShowString(2, 2, fw);
 
-	uint8 sw[] = { "SW:20211203" };
+	uint8 sw[] = { "SW:20211204" };
 //	systems_param_Get_param(ITEM_SOFTWARE_REV, &sw[2], &fw[3]);
 //	sw[2] = ':';
 	OLED_ShowString(2, 4, sw);
@@ -2918,5 +2947,20 @@ bool protocol_uartCB_Handle(uint16 len, uint8 *pPkg)
 
 float getCompensationVolt(void){
 	return vBattCompensation;
+}
+
+/***********************************************************************************************************
+  *  @brief
+  *
+  *  @param [in] :
+  *
+  *  @param [out] :
+  *
+  *  @return :
+  *
+  *  @note :
+  ************************************************************************************************************/
+bool		getSysStatus(void){
+	return CCS_MODE_SYSTEM;
 }
 /*************************** (C) COPYRIGHT 2012 Bough*****END OF FILE*****************************/

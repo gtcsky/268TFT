@@ -15,6 +15,7 @@
 ".\objects\user_flash.o"
 ".\objects\user_test.o"
 ".\objects\user_utils.o"
+".\objects\user_remaintimer.o"
 ".\objects\protocol_uart.o"
 ".\objects\clock.o"
 ".\objects\pwrmgr.o"

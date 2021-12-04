@@ -73,7 +73,7 @@ contact Bouth R&D at www.bough.com.cn
 //非0的值要>=LED_REAL_START_DATA
 const uint16 table_temperature[][2] =
 {
-	{0,680},			//3200
+	{0,PWM_MAX_CW},			//3200
 	{50,650},			//3300
 	{80,620},			//3400
 	{110,590},		//3500
@@ -97,7 +97,7 @@ const uint16 table_temperature[][2] =
 	{590,92},			//5300
 	{615,66},			//5400
 	{640,40},			//5500
-	{680,0},			//5600
+	{PWM_MAX_CW,0},			//5600
 };
 //
 //const float saturationArray[101]=

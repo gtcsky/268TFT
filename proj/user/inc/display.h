@@ -369,14 +369,14 @@ extern void displaySystemMenu(displayParamsStruct * disParams);
  *
  * @return  none
  */
-extern void batteryPercentDisplay(uint8 level);
+void batteryPercentDisplay(uint8 level);
 
 /**
  *
  *剩余时间显示
  *
 */
-extern void updateRemainingTimeByValue(uint16 data);
+void updateRemainingTimeByValue(uint16 data);
 
 /**
  * @fn		batterDisplay
@@ -387,7 +387,7 @@ extern void updateRemainingTimeByValue(uint16 data);
  *
  * @return  none
  */
-extern void batterDisplay(uint8 level);
+void batterDisplay(uint8 level);
 
 /**
  * @fn		updateArrowDisplay
