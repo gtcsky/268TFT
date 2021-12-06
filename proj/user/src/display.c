@@ -1624,22 +1624,11 @@ void temperatureDisplay_char(uint8 x, uint8 y, uint8 value) {
  *	per:显示单位
  */
 void displayFloat(UINT8 x,UINT8 y,float fNum,UINT8 size,UINT8 per){
-//	UINT16 vtInt=0;
-//	UINT8 len=0,dotPos=0,i=0;
-//	vtInt=(UINT16)fNum;
-////	OLED_ShowString(x,y,"    ");
-//	len=OLED_ShowNum(x,y,vtInt);
-//	dotPos=x+8*len;
-//	if(size){
-//		OLED_ShowChar(dotPos, y, '.');
-//		for(i=1;i<=size;i++){
-//			OLED_ShowChar(dotPos+5+(i-1)*8, y, ((u16) (fNum * oled_pow(10,i))) % 10 + '0');
-//		}
-//		OLED_ShowChar(dotPos +5+(size)*8, y, per);
-//	}else{
-//		OLED_ShowChar(dotPos , y, per);
-//		OLED_ShowChar(dotPos+8 , y, ' ');
-//	}
+
+	memset(charArray,0,sizeof(charArray));
+	sprintf(charArray,"%.3f%c",fNum,per);
+	lcdDrawFontGbk16(LCD_Y_START+x,y*8,CHAR_COLOR,BACKGROUND_COLOR,charArray);
+
 }
 void displayFactoryInfo(u8 item) {
 //	switch (item) {

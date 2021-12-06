@@ -48,6 +48,8 @@ typedef enum{
 #define	CONNECT_INFO_SHOW						0
 #define	SNV_INFO_SHOW							0
 #define	REMAIN_TIME_DISPLAY						1
+#define	REMAIN_TIME_AUTO_ADJUST					0
+
 
 typedef signed   char   int8_t;     //!< Signed 8 bit integer
 typedef unsigned char   uint8_t;    //!< Unsigned 8 bit integer

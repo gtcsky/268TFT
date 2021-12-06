@@ -9,6 +9,7 @@
 #include "command_center.h"
 #include "display.h"
 #include "log.h"
+
 #if(REMAIN_TIME_DISPLAY==1)
 volatile uint8 fIsUpdateRemainTimer = 0;
 uint16 vRemainTimer = 0;
@@ -93,7 +94,7 @@ void powerLineAdjust(float *currentPower) {
  *
  ****************************************************************************/
 uint16 calcRemainTime(uint8 ignoreCompare) {
-	float vtSpeedCW = 0, vtSpeedMW = 0;
+	float vtSpeedCW = 0, vtSpeedMW = 0,vtRedSpeed,vtGreenSpeed,vtBlueSpeed;
 	uint16 totalTimer = 0;
 	if (getSysStatus() && displayParams.brightness) {					//LED ON
 		float vCompensationVolt = getCompensationVolt();
@@ -113,16 +114,26 @@ uint16 calcRemainTime(uint8 ignoreCompare) {
 		}
 //		LOG("max=%d   vCompensationVolt=%d.%03d\n",vCwMaxTimer,(uint8)vCompensationVolt,((uint16)(vCompensationVolt*1000))%1000);
 		if (displayParams.vModeIndex < PreinstallEffect) {						//普通模式
-			if (pcaDataStruct.valueOfCw) {
-				vtSpeedCW = ((float) pcaDataStruct.valueOfCw / PWM_FRQ_CONST) * CW_MAX_TIMER_CONST;
+			if (displayParams.vModeIndex == ColorTempSetting) {
+				if (pcaDataStruct.valueOfCw) {
+					vtSpeedCW = ((float) pcaDataStruct.valueOfCw / PWM_FRQ_CONST) * CW_MAX_TIMER_CONST;
+					vtSpeedCW /= vCwMaxTimer;
+				}
+				powerLineAdjust(&vtSpeedCW);
+				if (pcaDataStruct.valueOfMw) {
+					vtSpeedMW = ((float) pcaDataStruct.valueOfMw / PWM_FRQ_CONST) * MW_MAX_TIMER_CONST;
+					vtSpeedMW /= vCwMaxTimer;
+				}
+				powerLineAdjust(&vtSpeedMW);
+			}else{
+				vtSpeedCW = ((float) PWM_MAX_CW/ PWM_FRQ_CONST) * CW_MAX_TIMER_CONST;			//vtSpeedCW user for
+				vtRedSpeed=(RED_POWER_RATING*1.0/CW_POWER_RATING)*vtSpeedCW;
+				vtGreenSpeed=(GREEN_POWER_RATING*1.0/CW_POWER_RATING)*vtSpeedCW;
+				vtBlueSpeed=(BLUE_POWER_RATING*1.0/CW_POWER_RATING)*vtSpeedCW;
+				vtSpeedCW=vtRedSpeed+vtGreenSpeed+vtBlueSpeed;
 				vtSpeedCW /= vCwMaxTimer;
+				powerLineAdjust(&vtSpeedCW);
 			}
-			powerLineAdjust(&vtSpeedCW);
-			if (pcaDataStruct.valueOfMw) {
-				vtSpeedMW = ((float) pcaDataStruct.valueOfMw / PWM_FRQ_CONST) * MW_MAX_TIMER_CONST;
-				vtSpeedMW /= vCwMaxTimer;
-			}
-			powerLineAdjust(&vtSpeedMW);
 		} else {									//灯效模式
 			if ((PreinstallEffect == displayParams.vModeIndex)) {
 				if (displayParams.style1Value == 0) {
@@ -201,6 +212,7 @@ void freshRemainTimeCheck(void) {
 		oldData = vRemainTimer;
 		newData = calcRemainTime(FALSE);
 		if (vCompensationVolt <= BATT_LV4_THESHOLD&&displayParams.brightness>=35) {
+#if(REMAIN_TIME_AUTO_ADJUST==1)
 			if (newData > oldData){
 				if((newData-oldData)>6)
 					minWith10sCnt = SLOW_MIN_80S;
@@ -209,6 +221,7 @@ void freshRemainTimeCheck(void) {
 				else
 					minWith10sCnt=STANDER_MIN_60S;
 			}
+#endif
 		}
 		if (newData && (oldData <=newData)) {
 			if(++vRemainCheckTimes>=minWith10sCnt){

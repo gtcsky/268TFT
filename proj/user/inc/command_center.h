@@ -137,9 +137,9 @@ contact Bouth R&D at www.bough.com.cn
 #define	CHARGE_VOLT_DIVIATION			0.06//		0.06V
 //#define 	RED_POWER_RATING					3.15	//3.15=4.14*0.76
 //#define 	GREEN_POWER_RATING				2.37	//2.37=4.16*0.57
-//#define 	BLUE_POWER_RATING				4.16	//4.16=4.12*1.01
-//#define	CW_POWER_RATING					5.21	//5.21=4.43W/MAX_CW_DUTY    		4.43W=4.10v*1.08A
-//#define	MW_POWER_RATING					5.30		//5.30=4.51/MAX_CW_DUTY       		4.51W=4.10v*1.10A
+//#define 	BLUE_POWER_RATING					4.16	//4.16=4.12*1.01
+//#define	CW_POWER_RATING					5.21	//5.21=4.43W/MAX_CW_DUTY    			4.43W=4.10v*1.08A
+//#define	MW_POWER_RATING					5.30	//5.30=4.51/MAX_CW_DUTY       			4.51W=4.10v*1.10A
 #define 	RED_POWER_RATING					2.29	//2.29=4.17*0.55
 #define 	GREEN_POWER_RATING				2.67	//2.67=4.17*0.64
 #define 	BLUE_POWER_RATING				2.87// 2.87=4.17*0.69
@@ -148,12 +148,12 @@ contact Bouth R&D at www.bough.com.cn
 #define	MAX_CW_DUTY						(PWM_MAX_CW*1.0/PWM_MAX_COUNT)
 #define	MAX_MW_DUTY						(PWM_MAX_CW*1.0/PWM_MAX_COUNT)
 
-#define	MAX_CHARGE_CURRENT				1.9					//2.0A
-#define	KEEP_VOLT_THRESHOLD				4.05					//4.00V
+#define	MAX_CHARGE_CURRENT				2.0					//2.0A
+#define	KEEP_VOLT_THRESHOLD				4.30					//4.00V
 #define	CHG_VOLT_FLOAT_HTHRESHOLD		(BATT_LV4_THESHOLD*0.001)					//3.60V
 #define	CHG_VOLT_FLOAT_LTHRESHOLD		(BATT_LV4_THESHOLD*0.001-0.1)				//3.50V
 #define	CHG_VOLT_FLOAT_EMPTY				3.40					//3.50V
-#define	CHRAGE_FULL_VOLT					4.15//(BATT_VOLTAGE_MAX*0.001)//4.30
+#define	CHRAGE_FULL_VOLT					4.35//(BATT_VOLTAGE_MAX*0.001)//4.30
 #define	BATT_ARRAY_SIZE					10
 #define	PARAMS_DATA_RESET				0
 /*********************************************************************

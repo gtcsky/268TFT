@@ -19,7 +19,7 @@ extern volatile uint8 fIsUpdateRemainTimer;
 #define	SLOW_MIN_70S							7
 #define	SLOW_MIN_80S							8
 
-#define	MW_MAX_TIMER_CONST					(1.0/(PWM_MAX_CW*1.0/PWM_FRQ_CONST))						//65min
+#define	MW_MAX_TIMER_CONST					(1.0/(PWM_MAX_CW*1.0/PWM_FRQ_CONST))						//80min
 #define	CW_MAX_TIMER_CONST					(MW_MAX_TIMER_CONST*(CW_POWER_RATING/MW_POWER_RATING))
 
 

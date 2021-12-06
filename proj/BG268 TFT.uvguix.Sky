@@ -3615,9 +3615,9 @@
       </Doc>
       <Doc>
         <Name>.\user\src\command_center.c</Name>
-        <ColumnNumber>0</ColumnNumber>
+        <ColumnNumber>31</ColumnNumber>
         <TopLine>582</TopLine>
-        <CurrentLine>601</CurrentLine>
+        <CurrentLine>599</CurrentLine>
         <Folding>1</Folding>
         <ContractedFolders></ContractedFolders>
         <PaneID>0</PaneID>
@@ -3634,8 +3634,8 @@
       <Doc>
         <Name>.\user\src\display.c</Name>
         <ColumnNumber>0</ColumnNumber>
-        <TopLine>1688</TopLine>
-        <CurrentLine>1711</CurrentLine>
+        <TopLine>1</TopLine>
+        <CurrentLine>1</CurrentLine>
         <Folding>1</Folding>
         <ContractedFolders></ContractedFolders>
         <PaneID>0</PaneID>
@@ -3723,9 +3723,9 @@
       </Doc>
       <Doc>
         <Name>.\user\src\user_remainTimer.c</Name>
-        <ColumnNumber>26</ColumnNumber>
-        <TopLine>169</TopLine>
-        <CurrentLine>191</CurrentLine>
+        <ColumnNumber>2</ColumnNumber>
+        <TopLine>171</TopLine>
+        <CurrentLine>193</CurrentLine>
         <Folding>1</Folding>
         <ContractedFolders></ContractedFolders>
         <PaneID>0</PaneID>

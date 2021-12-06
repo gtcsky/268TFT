@@ -267,6 +267,7 @@ void command_center_Init(uint8 task_id){
 
 	//display
 	display_Init();
+	fIsUpdateRemainTimer=1;
 	hal_pwrmgr_register(MOD_LCD_On,NULL,NULL);
 	fIsInvalidMacAddr=invalidMacAddrCheck();
 	readExceptionStts();
@@ -331,7 +332,9 @@ void getChargingCurrentByVolt(float *vtCurrent, float vtVolt) {
 		else
 			*vtCurrent = MAX_CHARGE_CURRENT * (1 - (vtVolt - KEEP_VOLT_THRESHOLD) * (1.0 / (CHRAGE_FULL_VOLT - KEEP_VOLT_THRESHOLD)));
 	}
-	//displayFloat(64,3, *vtCurrent,3,'A');
+#if(VOLTAGE_INFO_SHOW==2)
+	displayFloat(5,7, *vtCurrent,3,'A');
+#endif
 }
 /***************************************************************************
  *
@@ -661,6 +664,7 @@ uint16 command_center_ProcessEvent(uint8 task_id, uint16 events) {
 	}
 
 	if (events & CSS_TIMER_50MS_EVT) {
+#if(REMAIN_TIME_DISPLAY==1)
 		static uint8 time50msCnt = 0;
 		if (CCS_MODE_SYSTEM) {
 			if (fIsUpdateRemainTimer && vBattCompensation) {
@@ -677,6 +681,7 @@ uint16 command_center_ProcessEvent(uint8 task_id, uint16 events) {
 				freshRemainTimeCheck();
 			}
 		}
+#endif
 		return (events ^ CSS_TIMER_50MS_EVT);
 	}
 
@@ -2118,8 +2123,7 @@ void CCS_Systems_on(void)
 	// update light
 	//HSI
 	uint16 flag = 0;
-	if (HuesSetting == displayParams.arrowIndex)
-	{
+	if (HuesSetting == displayParams.arrowIndex)	{
 		flag = CCS_FLAG_HUE | CCS_FLAG_SATURATION;
 		displayParams.command = CCS_LIGHT_MODE_HSI;
 		displayParams.mode = 0;
@@ -2223,7 +2227,11 @@ void CCS_Systems_on(void)
 	updateArrowDisplay(&displayParams);
 	updateDeviceInfo2Flash();
 	osal_start_reload_timer(command_center_TaskID, CSS_TIMER_50MS_EVT, 50);
-	fIsUpdateRemainTimer=1;
+//	if(FALSE==fIsSystemFirstPowerON){
+//		fIsUpdateRemainTimer=0;
+//	}else{
+//		vPowerOnCnt=20;					//1.0s后更新时间显示
+//	}
 }
 /*********************************************************************
  * @fn      CCS_Systems_off
@@ -2617,12 +2625,12 @@ void HW_RESET_MCU(bool backup) {
   *  @note :
   ************************************************************************************************************/
 void versionDisplay(void) {
-	uint8 fw[] = { "FW:21120401" };
+	uint8 fw[] = { "FW:21120601" };
 	systems_param_Get_param(ITEM_FIRMWARE_REV, &fw[2], &fw[3]);
 	fw[2] = ':';
 	OLED_ShowString(2, 2, fw);
 
-	uint8 sw[] = { "SW:20211204" };
+	uint8 sw[] = { "SW:20211206" };
 //	systems_param_Get_param(ITEM_SOFTWARE_REV, &sw[2], &fw[3]);
 //	sw[2] = ':';
 	OLED_ShowString(2, 4, sw);
