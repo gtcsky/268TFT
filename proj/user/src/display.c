@@ -871,7 +871,60 @@ void lcd_clear(u16 Color) {
 //	SET_CS_HI;
 }
 
+/***********************************************************************************************************
+  *  @brief
+  *
+  *  @param [in] :
+  *
+  *  @param [out] :
+  *
+  *  @return :
+  *
+  *  @note :
+  ************************************************************************************************************/
+uint8 lcdDrawFontGbk8(uint16_t x, uint16_t y, uint16_t fc, uint16_t bc, char *s) {
+	unsigned char i, j;
+	unsigned short k;
+	uint8 len = 0;
 
+	while (*s) {
+		/* ASCII character table from 32 to 128 */
+		if (((uint8_t) (*s)) < 128) {
+			len = sizeof(remainTable) / sizeof(timerCharDef);
+			for (k = 0; k < len; k++) {
+				if (*s == remainTable[k].charData) {
+					lcdSetRegion(x, y, x + 7, y + 7);
+					for (i = 0; i < 8; i++) {
+						for (j = 0; j < 8; j++) {
+							if (remainTable[k].dotArray[i] & (0x80 >> j)) {
+								lcdDrawPoint(x + j, y + i, fc, false);
+							} else if (fc != bc) {
+								/* draw a point on the lcd */
+								lcdDrawPoint(x + j, y + i, bc, false);
+							}
+						}
+					}
+					x += 7;
+				}
+			}
+		}
+		s++;
+		len++;
+	}
+
+	return len;
+}
+/***********************************************************************************************************
+  *  @brief
+  *
+  *  @param [in] :
+  *
+  *  @param [out] :
+  *
+  *  @return :
+  *
+  *  @note :
+  ************************************************************************************************************/
 uint8 lcdDrawFontGbk16(uint16_t x, uint16_t y, uint16_t fc, uint16_t bc, char *s) {
 	unsigned char i, j;
 	unsigned short k, x0;
@@ -1682,10 +1735,10 @@ void updateRemainingTimeByValue(uint16 data) {
 	displayParams.remainingTime = data;
 	memset(charArray, 0, sizeof(charArray));
 	if (CCS_GET_ChargeStatus()||!displayParams.brightness) {		//charging
-		lcdDrawFontGbk16(ICON_CLOCK_X + 16, ICON_CLOCK_Y, OFF_CHAR_COLOR, BACKGROUND_COLOR, " -----");
+		lcdDrawFontGbk8(ICON_CLOCK_X + 16, ICON_CLOCK_Y+4, OFF_CHAR_COLOR, BACKGROUND_COLOR, " -----");
 	} else {
 		sprintf(charArray, "%2dh%02dm", data / 60, data % 60);
-		lcdDrawFontGbk16(ICON_CLOCK_X + 16, ICON_CLOCK_Y, GREEN, BACKGROUND_COLOR, charArray);
+		lcdDrawFontGbk8(ICON_CLOCK_X + 16, ICON_CLOCK_Y+4, GREEN, BACKGROUND_COLOR, charArray);
 	}
 #endif
 }

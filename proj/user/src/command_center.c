@@ -207,6 +207,7 @@ static uint8 errorDisplay=0;
 uint16 defaultTestTimerConst=1800;		//1800s
 uint16 vBurnInTestTimer=0;
 uint8 fIsInvalidMacAddr=0;
+static uint8 fIsTimeToAutoReload50ms=0;
 /*********************************************************************
 * FUNCTIONS
 */
@@ -271,11 +272,11 @@ void command_center_Init(uint8 task_id){
 	hal_pwrmgr_register(MOD_LCD_On,NULL,NULL);
 	fIsInvalidMacAddr=invalidMacAddrCheck();
 	readExceptionStts();
-		CCS_Systems_on();
-//	if(CCS_MODE_SYSTEM)
 //		CCS_Systems_on();
-//	else
-//		CCS_Systems_off();
+	if(CCS_MODE_SYSTEM)
+		CCS_Systems_on();
+	else
+		CCS_Systems_off();
 }
 
 /*********************************************************************
@@ -569,6 +570,8 @@ void startCharging(void) {
 		fullyParams.counter = VOLT_CHECK_WAIT_TIMES_3;
 	}else{
 			fIsUpdateRemainTimer = 1;
+			osal_start_timerEx(command_center_TaskID, CSS_TIMER_50MS_EVT, 1000);
+			fIsTimeToAutoReload50ms=1;
 	}
 	//battInfo.fBattFullyWaiting=0;
 	restartBattInfoCollection();
@@ -592,11 +595,13 @@ void setBatteryFully(void) {
 		memset(&fullyParams, 0, sizeof(fullyParams));
 }
 
-void	 stopCharging(void){
+void stopCharging(void) {
 	Flag_Status_Charge = Non_Charging;
 	displayParams.battLv = battInfo.vCurrentBattLv;
 	if (CCS_MODE_SYSTEM) {
-			fIsUpdateRemainTimer = 1;
+		fIsUpdateRemainTimer = 1;
+		osal_start_timerEx(command_center_TaskID, CSS_TIMER_50MS_EVT, 1000);
+		fIsTimeToAutoReload50ms = 1;
 	}
 	if (!fullyParams.fullyCheckIndex)
 		memset(&fullyParams, 0, sizeof(fullyParams));
@@ -666,6 +671,10 @@ uint16 command_center_ProcessEvent(uint8 task_id, uint16 events) {
 	if (events & CSS_TIMER_50MS_EVT) {
 #if(REMAIN_TIME_DISPLAY==1)
 		static uint8 time50msCnt = 0;
+		if(fIsTimeToAutoReload50ms){
+			fIsTimeToAutoReload50ms=0;
+			osal_start_reload_timer(command_center_TaskID, CSS_TIMER_50MS_EVT, 50);
+		}
 		if (CCS_MODE_SYSTEM) {
 			if (fIsUpdateRemainTimer && vBattCompensation) {
 				fIsUpdateRemainTimer = 0;
@@ -1086,6 +1095,8 @@ void restoreFromCustomizeModeCheck(uint16 * flag) {
  ****************************************************/
 void	  keyFuncUpProcess(u16 *flag){
 	fIsUpdateRemainTimer=1;
+	osal_start_timerEx(command_center_TaskID, CSS_TIMER_50MS_EVT, 1000);
+	fIsTimeToAutoReload50ms=1;
 	if (HuesSetting == displayParams.arrowIndex) {
 		if (displayParams.hues < MAX_Hues) {
 			displayParams.hues++;
@@ -1169,6 +1180,8 @@ void	  keyFuncDownProcess(u16 *flag){
 //		 turnOffAllLightEffect();
 //	}
 	fIsUpdateRemainTimer=1;
+	osal_start_timerEx(command_center_TaskID, CSS_TIMER_50MS_EVT, 1000);
+	fIsTimeToAutoReload50ms=1;
 	if (HuesSetting == displayParams.arrowIndex)	{
 		if (displayParams.hues > Min_Hues)	{
 			displayParams.hues--;
@@ -2226,12 +2239,8 @@ void CCS_Systems_on(void)
 	displaySystemMenu(&displayParams);
 	updateArrowDisplay(&displayParams);
 	updateDeviceInfo2Flash();
-	osal_start_reload_timer(command_center_TaskID, CSS_TIMER_50MS_EVT, 50);
-//	if(FALSE==fIsSystemFirstPowerON){
-//		fIsUpdateRemainTimer=0;
-//	}else{
-//		vPowerOnCnt=20;					//1.0s后更新时间显示
-//	}
+	osal_start_timerEx(command_center_TaskID, CSS_TIMER_50MS_EVT, 1000);
+	fIsTimeToAutoReload50ms=1;
 }
 /*********************************************************************
  * @fn      CCS_Systems_off

@@ -538,5 +538,6 @@ void exitLcdSleep(void);
 void lcdDraw160times32(uint16_t x, uint16_t y, uint16_t fc, uint16_t bc, uint8 * data);
 void lcdDraw32times32(uint16_t x, uint16_t y, uint16_t fc, uint16_t bc, uint8 * data);
 void lcdDrawWidthTimesHeight(uint16_t x, uint16_t y, uint16 width, uint16 heitht, uint16_t fc, uint16_t bc, uint8 * data);
+uint8 lcdDrawFontGbk8(uint16_t x, uint16_t y, uint16_t fc, uint16_t bc, char *s);
 /*************************** (C) COPYRIGHT 2012 Bough*****END OF FILE*****************************/
 #endif // DISPLAY_H

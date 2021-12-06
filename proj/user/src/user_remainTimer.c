@@ -112,7 +112,6 @@ uint16 calcRemainTime(uint8 ignoreCompare) {
 		} else if (vCompensationVolt >= REMAIN_TIME_STEP1_THRESHOLD) {
 			vCwMaxTimer = REMAIN_TIME_STEP1_START + (REMAIN_TIME_STEP1_LAST * (vCompensationVolt - REMAIN_TIME_STEP1_THRESHOLD) / REMAIN_TIME_STEP1_VOLT_LAST);
 		}
-//		LOG("max=%d   vCompensationVolt=%d.%03d\n",vCwMaxTimer,(uint8)vCompensationVolt,((uint16)(vCompensationVolt*1000))%1000);
 		if (displayParams.vModeIndex < PreinstallEffect) {						//普通模式
 			if (displayParams.vModeIndex == ColorTempSetting) {
 				if (pcaDataStruct.valueOfCw) {
@@ -126,13 +125,18 @@ uint16 calcRemainTime(uint8 ignoreCompare) {
 				}
 				powerLineAdjust(&vtSpeedMW);
 			}else{
-				vtSpeedCW = ((float) PWM_MAX_CW/ PWM_FRQ_CONST) * CW_MAX_TIMER_CONST;			//vtSpeedCW user for
-				vtRedSpeed=(RED_POWER_RATING*1.0/CW_POWER_RATING)*vtSpeedCW;
-				vtGreenSpeed=(GREEN_POWER_RATING*1.0/CW_POWER_RATING)*vtSpeedCW;
-				vtBlueSpeed=(BLUE_POWER_RATING*1.0/CW_POWER_RATING)*vtSpeedCW;
-				vtSpeedCW=vtRedSpeed+vtGreenSpeed+vtBlueSpeed;
+				vtSpeedCW = ((float) PWM_MAX_CW/ PWM_FRQ_CONST) * CW_MAX_TIMER_CONST;		//vtSpeedCW only user for calculate remain time
+				vtRedSpeed=(RED_POWER_RATING/CW_POWER_RATING)*vtSpeedCW;
+				vtRedSpeed*=(float) pcaDataStruct.valueOfRed / PWM_FRQ_CONST;
+				vtGreenSpeed=(GREEN_POWER_RATING/CW_POWER_RATING)*vtSpeedCW;
+				vtGreenSpeed*=(float) pcaDataStruct.valueOfGreen / PWM_FRQ_CONST;
+				vtBlueSpeed=(BLUE_POWER_RATING/CW_POWER_RATING)*vtSpeedCW;
+				vtBlueSpeed*=(float) pcaDataStruct.valueOfBlue / PWM_FRQ_CONST;
+				vtSpeedCW=vtRedSpeed+vtGreenSpeed+vtBlueSpeed;									//vtSpeedCW only user for calculate remain time
 				vtSpeedCW /= vCwMaxTimer;
 				powerLineAdjust(&vtSpeedCW);
+//				displayFloat(10,3,vtSpeedCW,3,' ');
+//				displayFloat(10,5,vtSpeedMW,3,' ');
 			}
 		} else {									//灯效模式
 			if ((PreinstallEffect == displayParams.vModeIndex)) {
@@ -155,14 +159,14 @@ uint16 calcRemainTime(uint8 ignoreCompare) {
 				}
 			}
 		}
-		vtSpeedMW += (0.05 * MW_MAX_TIMER_CONST) / vCwMaxTimer;				//加上10%约130mA的LCD+系统耗电
+		vtSpeedMW += (0.05 * MW_MAX_TIMER_CONST) / vCwMaxTimer;				//加上约130mA的LCD+系统耗电
 		totalTimer = (u16) (1.0 / (vtSpeedCW + vtSpeedMW));
-		if (displayParams.brightness == 100 && PreinstallEffect > displayParams.vModeIndex) {
-			if (totalTimer >= 80)
-				totalTimer = 80;
+		if (displayParams.brightness == 100 && ColorTempSetting == displayParams.vModeIndex) {
+			if (totalTimer >= (REMAIN_TIME_STEP5_START + REMAIN_TIME_STEP5_LAST))
+				totalTimer = REMAIN_TIME_STEP5_START + REMAIN_TIME_STEP5_LAST;
 		}
 		if (CCS_GET_ChargeStatus()) {
-			ignoreCompare = TRUE;				//充电状态,允许剩余时间增加变化
+			ignoreCompare = TRUE;												//充电状态,允许剩余时间增加变化
 		}
 		if (vRemainTimer != totalTimer) {
 			if (ignoreCompare) {

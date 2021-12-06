@@ -118,28 +118,10 @@ contact Bouth R&D at www.bough.com.cn
 #define CCS_BLERF_EVT       						0x2000
 #define CCS_TESTMODE_EVT						0x4000
 
-
-//#define CCS_BATT_CHECK_EVT						0x0001  //for battery detect
-//#define CCS_BATT_VALUE_EVT						0x0002  //event for battery voltage value update
-//#define CCS_KEY_CHANGE_EVT					0x0004
-//#define CCS_KEY_CONT_EVT						0x0008
-//#define CCS_GETTEMP_EVT						0x0010
-//#define CCS_BLEIOC_EVT							0x0020
-////#define CCS_LEDEFFECTMODE_EVT				0x0040
-//#define CCS_GATT_NOTIFY_EVT					0x1000
-//#define CCS_EEPROM_EVT						0x2000
-//#define CCS_TEST_MODE_EVT						0x4000
-
-
 #define	BATTERY_RESISTANCE				0.180		//(3.90-3.68)/1.85	for charging with protected board
 #define 	DISCHARGE_RESISTENCE				0.080		//110mR for discharging
 
 #define	CHARGE_VOLT_DIVIATION			0.06//		0.06V
-//#define 	RED_POWER_RATING					3.15	//3.15=4.14*0.76
-//#define 	GREEN_POWER_RATING				2.37	//2.37=4.16*0.57
-//#define 	BLUE_POWER_RATING					4.16	//4.16=4.12*1.01
-//#define	CW_POWER_RATING					5.21	//5.21=4.43W/MAX_CW_DUTY    			4.43W=4.10v*1.08A
-//#define	MW_POWER_RATING					5.30	//5.30=4.51/MAX_CW_DUTY       			4.51W=4.10v*1.10A
 #define 	RED_POWER_RATING					2.29	//2.29=4.17*0.55
 #define 	GREEN_POWER_RATING				2.67	//2.67=4.17*0.64
 #define 	BLUE_POWER_RATING				2.87// 2.87=4.17*0.69
