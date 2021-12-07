@@ -41,15 +41,18 @@ typedef enum{
 	Log2Printf,
 	Log2Lcd,
 }logInfoDef;
+#define		BG268	1
+#define		BG580	2
+
 #define	TEMPERATURE_SHOW						0
-#define	VOLTAGE_INFO_SHOW						0
+#define	VOLTAGE_INFO_SHOW						2
 #define	CHARG_INFO_SHOW							0
 #define	BLE_RECEIVED_SHOW							0
 #define	CONNECT_INFO_SHOW						0
 #define	SNV_INFO_SHOW							0
 #define	REMAIN_TIME_DISPLAY						1
 #define	REMAIN_TIME_AUTO_ADJUST					0
-
+#define	MODEL_NO_SELECT							BG580
 
 typedef signed   char   int8_t;     //!< Signed 8 bit integer
 typedef unsigned char   uint8_t;    //!< Unsigned 8 bit integer

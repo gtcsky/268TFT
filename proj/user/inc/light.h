@@ -80,8 +80,11 @@ contact Bouth R&D at www.bough.com.cn
 
 #define RGB_MAX_RATE								1.0
 #define RGB_MIN_RATE								0.90
-
-#define	PWM_MAX_CW								650
+#if(MODEL_NO_SELECT==BG268)
+	#define	PWM_MAX_CW								650
+#else
+	#define	PWM_MAX_CW								680
+#endif
 #define 	PWM_MAX_COUNT							800
 #define	PWM_FRQ_CONST							PWM_MAX_COUNT
 #define	PWM_FREQ_CONST							PWM_MAX_COUNT

@@ -62,13 +62,22 @@ contact Bouth R&D at www.bough.com.cn
 #define 	ADC_CHANNEL_BATT								ADC_CH2N_P13
 #define 	ADC_CHANNEL_TEMP								ADC_CH3P_P20
 
-#define 	BATT_VOLT_MIN									3.30
-#define	BATT_LV1_THESHOLD								3550	//
-#define	BATT_LV2_THESHOLD								3710	//
-#define	BATT_LV3_THESHOLD								3840	//
-#define	BATT_LV4_THESHOLD								4000	//3930	//
-#define 	BATT_VOLTAGE_MAX								4350	//mv
+#if(MODEL_NO_SELECT==BG268)
+	#define 	BATT_VOLT_MIN									3.30
+	#define	BATT_LV1_THESHOLD								3550	//
+	#define	BATT_LV2_THESHOLD								3710	//
+	#define	BATT_LV3_THESHOLD								3840	//
+	#define	BATT_LV4_THESHOLD								4000	//3930	//
+	#define 	BATT_VOLTAGE_MAX								4350	//mv
 //#define	CHARGE_FINAL_VOLT							414		//恒压模式电压阈值
+#else
+	#define 	BATT_VOLT_MIN									3.30
+	#define	BATT_LV1_THESHOLD								3420	//
+	#define	BATT_LV2_THESHOLD								3510	//
+	#define	BATT_LV3_THESHOLD								3780	//
+	#define	BATT_LV4_THESHOLD								3930	//3930	//
+	#define 	BATT_VOLTAGE_MAX								4150	//mv
+#endif
 
 #define CURRENT_LED_MAX								860		//mA
 #define CURRENT_LED_SAVE								26		//mA
@@ -92,9 +101,14 @@ contact Bouth R&D at www.bough.com.cn
 
 #define GPIO_KEY_POWER								  	P6
 #define GPIO_KEY_FUNC_UP							  	P3//PGPIO_DUMMY//P14
-#define GPIO_KEY_FUNC_DOWN						  	P4
-#define	GPIO_KEY_SWITCH								P5
 
+#if(MODEL_NO_SELECT==BG268)
+	#define 	GPIO_KEY_FUNC_DOWN						  	P4
+	#define	GPIO_KEY_SWITCH								P5
+#else
+	#define 	GPIO_KEY_FUNC_DOWN						  	P5
+	#define	GPIO_KEY_SWITCH								P4
+#endif
 #define SW_RESET_MCU									P19
 #define GPIO_CHARGE_DET							    	P11
 #define GPIO_CHARGE_FULL							  	P12

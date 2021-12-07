@@ -118,24 +118,44 @@ contact Bouth R&D at www.bough.com.cn
 #define CCS_BLERF_EVT       						0x2000
 #define CCS_TESTMODE_EVT						0x4000
 
-#define	BATTERY_RESISTANCE				0.180		//(3.90-3.68)/1.85	for charging with protected board
-#define 	DISCHARGE_RESISTENCE				0.080		//110mR for discharging
+#if(MODEL_NO_SELECT==BG268)
+	#define	BATTERY_RESISTANCE				0.180		//(3.90-3.68)/1.85	for charging with protected board
+	#define 	DISCHARGE_RESISTENCE				0.080		//110mR for discharging
 
-#define	CHARGE_VOLT_DIVIATION			0.06//		0.06V
-#define 	RED_POWER_RATING					2.29	//2.29=4.17*0.55
-#define 	GREEN_POWER_RATING				2.67	//2.67=4.17*0.64
-#define 	BLUE_POWER_RATING				2.87// 2.87=4.17*0.69
-#define	CW_POWER_RATING					8.07	//5.21=4.43W/MAX_CW_DUTY    		6.56W=4.10v*1.60A
-#define	MW_POWER_RATING					8.07	//5.30=4.51/MAX_CW_DUTY       		6.56W=4.10v*1.60A
-#define	MAX_CW_DUTY						(PWM_MAX_CW*1.0/PWM_MAX_COUNT)
-#define	MAX_MW_DUTY						(PWM_MAX_CW*1.0/PWM_MAX_COUNT)
+	#define 	RED_POWER_RATING					2.29	//2.29=4.17*0.55
+	#define 	GREEN_POWER_RATING				2.67	//2.67=4.17*0.64
+	#define 	BLUE_POWER_RATING				2.87// 2.87=4.17*0.69
+	#define	CW_POWER_RATING					8.07	//5.21=4.43W/MAX_CW_DUTY    		6.56W=4.10v*1.60A
+	#define	MW_POWER_RATING					8.07	//5.30=4.51/MAX_CW_DUTY       		6.56W=4.10v*1.60A
+	#define	MAX_CW_DUTY						(PWM_MAX_CW*1.0/PWM_MAX_COUNT)
+	#define	MAX_MW_DUTY						(PWM_MAX_CW*1.0/PWM_MAX_COUNT)
+#else
+	#define	BATTERY_RESISTANCE				0.180		//(3.90-3.68)/1.85	for charging with protected board
+	#define 	DISCHARGE_RESISTENCE				0.060		//110mR for discharging
+	#define 	RED_POWER_RATING					2.29	//2.29=4.17*0.55
+	#define 	GREEN_POWER_RATING				2.67	//2.67=4.17*0.64
+	#define 	BLUE_POWER_RATING				2.87// 2.87=4.17*0.69
+	#define	CW_POWER_RATING					8.07	//5.21=4.43W/MAX_CW_DUTY    		6.56W=4.10v*1.60A
+	#define	MW_POWER_RATING					8.07	//5.30=4.51/MAX_CW_DUTY       		6.56W=4.10v*1.60A
+	#define	MAX_CW_DUTY						(PWM_MAX_CW*1.0/PWM_MAX_COUNT)
+	#define	MAX_MW_DUTY						(PWM_MAX_CW*1.0/PWM_MAX_COUNT)
+#endif
 
 #define	MAX_CHARGE_CURRENT				2.0					//2.0A
-#define	KEEP_VOLT_THRESHOLD				4.30					//4.00V
-#define	CHG_VOLT_FLOAT_HTHRESHOLD		(BATT_LV4_THESHOLD*0.001)					//3.60V
-#define	CHG_VOLT_FLOAT_LTHRESHOLD		(BATT_LV4_THESHOLD*0.001-0.1)				//3.50V
-#define	CHG_VOLT_FLOAT_EMPTY				3.40					//3.50V
-#define	CHRAGE_FULL_VOLT					4.35//(BATT_VOLTAGE_MAX*0.001)//4.30
+
+#if(MODEL_NO_SELECT==BG268)
+	#define	KEEP_VOLT_THRESHOLD				4.30					//4.00V
+	#define	CHG_VOLT_FLOAT_HTHRESHOLD		(BATT_LV4_THESHOLD*0.001)					//3.60V
+	#define	CHG_VOLT_FLOAT_LTHRESHOLD		(BATT_LV4_THESHOLD*0.001-0.1)				//3.50V
+	#define	CHG_VOLT_FLOAT_EMPTY				3.40					//3.50V
+	#define	CHRAGE_FULL_VOLT					4.35//(BATT_VOLTAGE_MAX*0.001)//4.30
+#else
+	#define	KEEP_VOLT_THRESHOLD				4.00					//4.00V
+	#define	CHG_VOLT_FLOAT_HTHRESHOLD		(BATT_LV4_THESHOLD*0.001)					//3.60V
+	#define	CHG_VOLT_FLOAT_LTHRESHOLD		(BATT_LV4_THESHOLD*0.001-0.1)				//3.50V
+	#define	CHG_VOLT_FLOAT_EMPTY				3.40					//3.50V
+	#define	CHRAGE_FULL_VOLT					4.10//(BATT_VOLTAGE_MAX*0.001)//4.30
+#endif
 #define	BATT_ARRAY_SIZE					10
 #define	PARAMS_DATA_RESET				0
 /*********************************************************************

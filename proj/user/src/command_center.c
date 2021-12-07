@@ -2254,6 +2254,7 @@ void CCS_Systems_on(void)
 	updateDeviceInfo2Flash();
 	osal_start_timerEx(command_center_TaskID, CSS_TIMER_50MS_EVT, 1100);
 	fIsTimeToAutoReload50ms=1;
+
 }
 /*********************************************************************
  * @fn      CCS_Systems_off

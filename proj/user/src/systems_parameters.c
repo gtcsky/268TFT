@@ -132,7 +132,18 @@ static const uint8 defaultIntervalTime[] =
 };
 static uint8 IntervalTime[sizeof(defaultIntervalTime)+2] = {0};
 
-static const uint8 defaultModelNumber[] = {"BG268"};
+#if(MODEL_NO_SELECT==BG268)
+	static const uint8 defaultModelNumber[] = {"BG268"};
+	static const uint8 defaultSoftwareVersion[] = {"268T2.10"};
+	static const uint8 defaultUserManualInfo[]={"BG268A001B001C001"};
+	static const uint8 defaultOtaFile[]={"BG268D001E001F001"};
+#else
+	static const uint8 defaultModelNumber[] = {"BG580"};
+	static const uint8 defaultSoftwareVersion[] = {"580T2.10"};
+	static const uint8 defaultUserManualInfo[]={"BG580A001B001C001"};
+	static const uint8 defaultOtaFile[]={"BG580D001E001F001"};
+#endif
+
 static uint8 ModelNumber[SYSPARAM_MAX_MODELNUMBER_SIZE+2] = {0};
 
 static const uint8 defaultSerialNumber[] = {"00000001"};
@@ -140,13 +151,11 @@ static uint8 SerialNumber[SYSPARAM_MAX_SERIALNUMBER_SIZE+2] = {0};
 
 static const uint8 defaultFirmwareVersion[] = {"21120702"};
 static const uint8 defaultHardwareVersion[] = {"BG334.00"};
-static const uint8 defaultSoftwareVersion[] = {"268T2.10"};
 static const uint8 defaultManufacturerName[] = {"Bough Tech"};
 static const uint8	defaultUserManual[]={"Bough User Manual"};
 static const uint8	defaultOtaInfo[]={"Bough User OTA"};
-static const uint8 defaultUserManualInfo[]={"BG268A001B001C001"};
 uint8 UserManualInfo[SYSPARAM_MAX_USER_MANUAL_SIZE+2]={0};
-static const uint8 defaultOtaFile[]={"BG268D001E001F001"};
+
 uint8 OtaFile[SYSPARAM_MAX_OTA_FILE_SIZE+2]={0};
 static const uint8 default11073CertData[] ={
 	DEVINFO_11073_BODY_EXP,      // authoritative body typeSYS

@@ -159,7 +159,12 @@ uint16 calcRemainTime(uint8 ignoreCompare) {
 				}
 			}
 		}
+
+#if(MODEL_NO_SELECT==BG268)
 		vtSpeedMW += (0.07 * MW_MAX_TIMER_CONST) / vCwMaxTimer;				//加上约130mA的LCD+系统耗电
+#else
+		vtSpeedMW += (0.01 * MW_MAX_TIMER_CONST) / vCwMaxTimer;				//加上约130mA的LCD+系统耗电
+#endif
 		totalTimer = (u16) (1.0 / (vtSpeedCW + vtSpeedMW));
 		if (displayParams.brightness == 100 && ColorTempSetting == displayParams.vModeIndex) {
 			if (totalTimer >= (REMAIN_TIME_STEP5_START + REMAIN_TIME_STEP5_LAST))

@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\BG268_TFT.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\BG268_TFT.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Tue Dec 07 11:00:01 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Tue Dec 07 15:07:54 2021
 <BR><P>
 <H3>Maximum Stack Usage =        488 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -2207,6 +2207,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CCS_keysChange_handle
 <LI><a href="#[6d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CCS_EventsPro_TestMode
 <LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;command_center_ProcessEvent
+<LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setBattLevel
+<LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getChargingCurrentByVolt
 </UL>
 
 <P><STRONG><a name="[8e]"></a>displaySystemMenu</STRONG> (Thumb, 362 bytes, Stack size 32 bytes, display.o(i.displaySystemMenu))
@@ -2412,7 +2414,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;setBattLevel
 </UL>
 
-<P><STRONG><a name="[179]"></a>getBattPercentByVoltMv</STRONG> (Thumb, 158 bytes, Stack size 8 bytes, battery.o(i.getBattPercentByVoltMv))
+<P><STRONG><a name="[179]"></a>getBattPercentByVoltMv</STRONG> (Thumb, 162 bytes, Stack size 8 bytes, battery.o(i.getBattPercentByVoltMv))
 <BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = getBattPercentByVoltMv &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; __aeabi_llsr
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
@@ -2425,12 +2427,13 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[178]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getBattPercentByVolt
 </UL>
 
-<P><STRONG><a name="[108]"></a>getChargingCurrentByVolt</STRONG> (Thumb, 158 bytes, Stack size 16 bytes, command_center.o(i.getChargingCurrentByVolt))
+<P><STRONG><a name="[108]"></a>getChargingCurrentByVolt</STRONG> (Thumb, 168 bytes, Stack size 16 bytes, command_center.o(i.getChargingCurrentByVolt))
 <BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = getChargingCurrentByVolt &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; __aeabi_llsr
 </UL>
 <BR>[Calls]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dsub
 <LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 <LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
+<LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;displayFloat
 <LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
 <LI><a href="#[58]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_drsub
 <LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
@@ -3940,13 +3943,14 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[1d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;startLightEffect
 </UL>
 
-<P><STRONG><a name="[139]"></a>setBattLevel</STRONG> (Thumb, 212 bytes, Stack size 24 bytes, command_center.o(i.setBattLevel))
+<P><STRONG><a name="[139]"></a>setBattLevel</STRONG> (Thumb, 264 bytes, Stack size 24 bytes, command_center.o(i.setBattLevel))
 <BR><BR>[Stack]<UL><LI>Max Depth = 208<LI>Call Chain = setBattLevel &rArr; battVoltCompensation &rArr; getChargingCurrentByVolt &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; __aeabi_llsr
 </UL>
 <BR>[Calls]<UL><LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;phy_printf
 <LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
 <LI><a href="#[178]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getBattPercentByVolt
 <LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getLightStts
+<LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;displayFloat
 <LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod (via Veneer)
 <LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
 <LI><a href="#[215]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;processBattLevel
