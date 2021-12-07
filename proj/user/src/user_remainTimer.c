@@ -78,10 +78,10 @@ void powerLineAdjust(float *currentPower) {
 		*currentPower *= 0.85;
 		break;
 	case 5:
-		*currentPower *= 0.70;
+		*currentPower *= 0.80;
 		break;
 	case 1:
-		*currentPower *= 0.68;
+		*currentPower *= 0.75;
 		break;
 	}
 }
@@ -159,7 +159,7 @@ uint16 calcRemainTime(uint8 ignoreCompare) {
 				}
 			}
 		}
-		vtSpeedMW += (0.05 * MW_MAX_TIMER_CONST) / vCwMaxTimer;				//加上约130mA的LCD+系统耗电
+		vtSpeedMW += (0.07 * MW_MAX_TIMER_CONST) / vCwMaxTimer;				//加上约130mA的LCD+系统耗电
 		totalTimer = (u16) (1.0 / (vtSpeedCW + vtSpeedMW));
 		if (displayParams.brightness == 100 && ColorTempSetting == displayParams.vModeIndex) {
 			if (totalTimer >= (REMAIN_TIME_STEP5_START + REMAIN_TIME_STEP5_LAST))
