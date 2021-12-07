@@ -138,7 +138,7 @@ static uint8 ModelNumber[SYSPARAM_MAX_MODELNUMBER_SIZE+2] = {0};
 static const uint8 defaultSerialNumber[] = {"00000001"};
 static uint8 SerialNumber[SYSPARAM_MAX_SERIALNUMBER_SIZE+2] = {0};
 
-static const uint8 defaultFirmwareVersion[] = {"21120602"};
+static const uint8 defaultFirmwareVersion[] = {"21120702"};
 static const uint8 defaultHardwareVersion[] = {"BG334.00"};
 static const uint8 defaultSoftwareVersion[] = {"268T2.10"};
 static const uint8 defaultManufacturerName[] = {"Bough Tech"};

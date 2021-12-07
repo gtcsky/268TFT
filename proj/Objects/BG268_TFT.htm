@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\BG268_TFT.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\BG268_TFT.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Mon Dec 06 16:55:42 2021
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Tue Dec 07 10:43:41 2021
 <BR><P>
 <H3>Maximum Stack Usage =        488 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1320,7 +1320,7 @@ Global Symbols
 <LI><a href="#[1f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;protocol_uartCB_Handle
 </UL>
 
-<P><STRONG><a name="[8a]"></a>CCS_Systems_on</STRONG> (Thumb, 330 bytes, Stack size 24 bytes, command_center.o(i.CCS_Systems_on))
+<P><STRONG><a name="[8a]"></a>CCS_Systems_on</STRONG> (Thumb, 328 bytes, Stack size 24 bytes, command_center.o(i.CCS_Systems_on))
 <BR><BR>[Stack]<UL><LI>Max Depth = 336<LI>Call Chain = CCS_Systems_on &rArr; CCS_DATATRANSFER_PROCESS &rArr; light_ctrl &rArr; startLightEffect &rArr; customizeGradualEffect &rArr; loadTargetPwmData &rArr; loadTargetRGBValue &rArr; hsb2Rgb &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; __aeabi_llsr
 </UL>
 <BR>[Calls]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CCS_DATATRANSFER_PROCESS
@@ -1945,7 +1945,7 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> osal_blesmartperipheral.o(.constdata)
 </UL>
 <P><STRONG><a name="[11e]"></a>calcRemainTime</STRONG> (Thumb, 918 bytes, Stack size 48 bytes, user_remaintimer.o(i.calcRemainTime))
-<BR><BR>[Stack]<UL><LI>Max Depth = 200<LI>Call Chain = calcRemainTime &rArr; powerLineAdjust &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; __aeabi_llsr
+<BR><BR>[Stack]<UL><LI>Max Depth = 184<LI>Call Chain = calcRemainTime &rArr; powerLineAdjust &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; __aeabi_llsr
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
 <LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
@@ -2049,7 +2049,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osalInitTasks
 </UL>
 
-<P><STRONG><a name="[30]"></a>command_center_ProcessEvent</STRONG> (Thumb, 1440 bytes, Stack size 48 bytes, command_center.o(i.command_center_ProcessEvent))
+<P><STRONG><a name="[30]"></a>command_center_ProcessEvent</STRONG> (Thumb, 1498 bytes, Stack size 48 bytes, command_center.o(i.command_center_ProcessEvent))
 <BR><BR>[Stack]<UL><LI>Max Depth = 456<LI>Call Chain = command_center_ProcessEvent &rArr; CCS_NotifyStatus &rArr; SimpleProfile_SetParameter &rArr; GATTServApp_ProcessCharCfg &rArr; GATTServApp_ReadAttr &rArr; gattServApp_FindAuthorizeAttrCB
 </UL>
 <BR>[Calls]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CCS_keysChange_handle
@@ -2384,7 +2384,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[138]"></a>freshRemainTimeCheck</STRONG> (Thumb, 140 bytes, Stack size 16 bytes, user_remaintimer.o(i.freshRemainTimeCheck))
-<BR><BR>[Stack]<UL><LI>Max Depth = 216<LI>Call Chain = freshRemainTimeCheck &rArr; calcRemainTime &rArr; powerLineAdjust &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; __aeabi_llsr
+<BR><BR>[Stack]<UL><LI>Max Depth = 200<LI>Call Chain = freshRemainTimeCheck &rArr; calcRemainTime &rArr; powerLineAdjust &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; __aeabi_llsr
 </UL>
 <BR>[Calls]<UL><LI><a href="#[123]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateRemainingTimeByValue
 <LI><a href="#[11e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcRemainTime
@@ -3075,7 +3075,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;keyFuncUpProcess
 </UL>
 
-<P><STRONG><a name="[9f]"></a>keyFuncDownProcess</STRONG> (Thumb, 284 bytes, Stack size 32 bytes, command_center.o(i.keyFuncDownProcess))
+<P><STRONG><a name="[9f]"></a>keyFuncDownProcess</STRONG> (Thumb, 282 bytes, Stack size 32 bytes, command_center.o(i.keyFuncDownProcess))
 <BR><BR>[Stack]<UL><LI>Max Depth = 360<LI>Call Chain = keyFuncDownProcess &rArr; keyBrightnessDecProcess &rArr; CCS_DATATRANSFER_PROCESS &rArr; light_ctrl &rArr; startLightEffect &rArr; customizeGradualEffect &rArr; loadTargetPwmData &rArr; loadTargetRGBValue &rArr; hsb2Rgb &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; __aeabi_llsr
 </UL>
 <BR>[Calls]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CCS_DATATRANSFER_PROCESS
@@ -3093,7 +3093,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CCS_keysChange_handle
 </UL>
 
-<P><STRONG><a name="[9e]"></a>keyFuncUpProcess</STRONG> (Thumb, 312 bytes, Stack size 32 bytes, command_center.o(i.keyFuncUpProcess))
+<P><STRONG><a name="[9e]"></a>keyFuncUpProcess</STRONG> (Thumb, 310 bytes, Stack size 32 bytes, command_center.o(i.keyFuncUpProcess))
 <BR><BR>[Stack]<UL><LI>Max Depth = 360<LI>Call Chain = keyFuncUpProcess &rArr; keyBrightnessIncProcess &rArr; CCS_DATATRANSFER_PROCESS &rArr; light_ctrl &rArr; startLightEffect &rArr; customizeGradualEffect &rArr; loadTargetPwmData &rArr; loadTargetRGBValue &rArr; hsb2Rgb &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; __aeabi_llsr
 </UL>
 <BR>[Calls]<UL><LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CCS_DATATRANSFER_PROCESS
@@ -3176,7 +3176,7 @@ Global Symbols
 <LI><a href="#[7b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;displayFloat
 </UL>
 
-<P><STRONG><a name="[1ca]"></a>lcdDrawFontGbk8</STRONG> (Thumb, 186 bytes, Stack size 56 bytes, display.o(i.lcdDrawFontGbk8))
+<P><STRONG><a name="[1ca]"></a>lcdDrawFontGbk8</STRONG> (Thumb, 188 bytes, Stack size 56 bytes, display.o(i.lcdDrawFontGbk8))
 <BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = lcdDrawFontGbk8 &rArr; lcdDrawPoint &rArr; lcd_set_xy &rArr; write_data &rArr; hal_spi_send_byte
 </UL>
 <BR>[Calls]<UL><LI><a href="#[1c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcdSetRegion
@@ -3263,7 +3263,7 @@ Global Symbols
 <LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcd_clear
 </UL>
 
-<P><STRONG><a name="[89]"></a>lcd_clear</STRONG> (Thumb, 64 bytes, Stack size 24 bytes, display.o(i.lcd_clear))
+<P><STRONG><a name="[89]"></a>lcd_clear</STRONG> (Thumb, 60 bytes, Stack size 24 bytes, display.o(i.lcd_clear))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = lcd_clear &rArr; lcdSetRegion &rArr; write_data &rArr; hal_spi_send_byte
 </UL>
 <BR>[Calls]<UL><LI><a href="#[1c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;lcdSetRegion
@@ -3276,7 +3276,7 @@ Global Symbols
 <LI><a href="#[7f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CCS_Systems_off
 </UL>
 
-<P><STRONG><a name="[86]"></a>lcd_off</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, display.o(i.lcd_off))
+<P><STRONG><a name="[86]"></a>lcd_off</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, display.o(i.lcd_off))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = lcd_off &rArr; hal_spi_bus_deinit &rArr; hal_spi_pin_deinit
 </UL>
 <BR>[Calls]<UL><LI><a href="#[1ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;hal_spi_bus_deinit
@@ -3364,7 +3364,7 @@ Global Symbols
 <LI><a href="#[13]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;customizeGrdualEndCbfunc
 </UL>
 
-<P><STRONG><a name="[1d4]"></a>light_update</STRONG> (Thumb, 122 bytes, Stack size 16 bytes, light.o(i.light_update))
+<P><STRONG><a name="[1d4]"></a>light_update</STRONG> (Thumb, 134 bytes, Stack size 16 bytes, light.o(i.light_update))
 <BR><BR>[Stack]<UL><LI>Max Depth = 116<LI>Call Chain = light_update &rArr; pwmInit &rArr; hal_pwm_ch_start &rArr; hal_pwm_set_count_val &rArr; subWriteReg
 </UL>
 <BR>[Calls]<UL><LI><a href="#[1a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;hal_pwm_stop
@@ -3608,8 +3608,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[121]"></a>powerLineAdjust</STRONG> (Thumb, 244 bytes, Stack size 24 bytes, user_remaintimer.o(i.powerLineAdjust))
-<BR><BR>[Stack]<UL><LI>Max Depth = 152<LI>Call Chain = powerLineAdjust &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; __aeabi_llsr
+<P><STRONG><a name="[121]"></a>powerLineAdjust</STRONG> (Thumb, 110 bytes, Stack size 8 bytes, user_remaintimer.o(i.powerLineAdjust))
+<BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = powerLineAdjust &rArr; __aeabi_dmul &rArr; _double_epilogue &rArr; __aeabi_llsr
 </UL>
 <BR>[Calls]<UL><LI><a href="#[59]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 <LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
@@ -4172,7 +4172,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[1d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;startLightEffect
 </UL>
 
-<P><STRONG><a name="[96]"></a>stopCharging</STRONG> (Thumb, 58 bytes, Stack size 16 bytes, command_center.o(i.stopCharging))
+<P><STRONG><a name="[96]"></a>stopCharging</STRONG> (Thumb, 56 bytes, Stack size 16 bytes, command_center.o(i.stopCharging))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = stopCharging
 </UL>
 <BR>[Calls]<UL><LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osal_start_timerEx (via Veneer)

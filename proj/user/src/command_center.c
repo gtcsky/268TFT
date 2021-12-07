@@ -188,7 +188,7 @@ typedef enum{
 
 // Define for test mode
 static uint8 TESTMODE = NormalMode;
-static uint8 KEY_TESTMODE_Press_times = 0;
+//static uint8 KEY_TESTMODE_Press_times = 0;
 static uint8 Test_Item = TESTITEM_NONE;
 static uint8 Test_Key_Fun = 10;
 static uint8 Test_Key_Light = 10;
@@ -208,6 +208,7 @@ uint16 defaultTestTimerConst=1800;		//1800s
 uint16 vBurnInTestTimer=0;
 uint8 fIsInvalidMacAddr=0;
 static uint8 fIsTimeToAutoReload50ms=0;
+static bool fIsBattFullyDisplaying=false;
 /*********************************************************************
 * FUNCTIONS
 */
@@ -278,7 +279,6 @@ void command_center_Init(uint8 task_id){
 	else
 		CCS_Systems_off();
 }
-
 /*********************************************************************
  * @fn      bleSmartPeripheral_ProcessOSALMsg
  *
@@ -600,7 +600,7 @@ void stopCharging(void) {
 	displayParams.battLv = battInfo.vCurrentBattLv;
 	if (CCS_MODE_SYSTEM) {
 		fIsUpdateRemainTimer = 1;
-		osal_start_timerEx(command_center_TaskID, CSS_TIMER_50MS_EVT, 1000);
+		osal_start_timerEx(command_center_TaskID, CSS_TIMER_50MS_EVT, 1100);
 		fIsTimeToAutoReload50ms = 1;
 	}
 	if (!fullyParams.fullyCheckIndex)
@@ -757,8 +757,8 @@ uint16 command_center_ProcessEvent(uint8 task_id, uint16 events) {
 			}
 			//}
 			osal_start_timerEx(command_center_TaskID, CCS_BATT_CHECK_EVT, BATT_DET_PERIOD_1S);
-		} else {
-			if (Flag_Status_Charge == Battery_fully) {
+		} else {																					//   System Off Mode
+			if (Flag_Status_Charge == Battery_fully) {													//	Battery fully
 				if (!CCS_MODE_DISPLAY&&hal_gpio_read(GPIO_KEY_POWER)) {
 					//lcd_on();
 					reInitialLCD();
@@ -767,25 +767,37 @@ uint16 command_center_ProcessEvent(uint8 task_id, uint16 events) {
 					hal_gpio_write(GPIO_LCD_BACKLIGHT, HI_STTS);
 					batterDisplay(Max_Batt_level);
 					displayParams.battLv = battInfo.vCurrentBattLv;
-					osal_stop_timerEx(command_center_TaskID, CCS_BATT_CHECK_EVT);
-					osal_start_reload_timer(command_center_TaskID, CCS_BATT_CHECK_EVT, BATT_DET_PERIOD_1S);
+					fIsBattFullyDisplaying=true;
+//					osal_stop_timerEx(command_center_TaskID, CCS_BATT_CHECK_EVT);
+					osal_start_reload_timer(command_center_TaskID, CCS_BATT_CHECK_EVT, BATT_DET_PERIOD_1S*4);
 				} else {
-					if (hal_gpio_read(GPIO_KEY_POWER)&&!KEY_FUNC_Press_times) {
-						if (!battInfo.vDisplayBattLv)
-							battInfo.vDisplayBattLv = 0;
-						lcd_off();
-						CCS_MODE_DISPLAY = false;
+					if (hal_gpio_read(GPIO_KEY_POWER) && !KEY_FUNC_Press_times) {
+						if (fIsBattFullyDisplaying) {
+							fIsBattFullyDisplaying=false;
+							if (!battInfo.vDisplayBattLv)
+								battInfo.vDisplayBattLv = 0;
+							hal_gpio_write(GPIO_LCD_BACKLIGHT, LOW_STTS);
+							LOG("off Lcd\n");
+							lcd_off();
+							CCS_MODE_DISPLAY = false;
 //						stopCharging();
-						//displayParams.battLv = battInfo.vCurrentBattLv;
-						osal_stop_timerEx(command_center_TaskID, CCS_BATT_CHECK_EVT);
+							//displayParams.battLv = battInfo.vCurrentBattLv;
+							osal_stop_timerEx(command_center_TaskID, CCS_BATT_CHECK_EVT);
+						}else{
+							fIsBattFullyDisplaying=true;
+							batterDisplay(Max_Batt_level);
+							displayParams.battLv = battInfo.vCurrentBattLv;
+							osal_start_reload_timer(command_center_TaskID, CCS_BATT_CHECK_EVT, BATT_DET_PERIOD_1S*4);
+						}
 					}else{
-						osal_start_reload_timer(command_center_TaskID, CCS_BATT_CHECK_EVT, BATT_DET_PERIOD_1S);
+						osal_start_reload_timer(command_center_TaskID, CCS_BATT_CHECK_EVT, BATT_DET_PERIOD_1S*4);
 					}
 				}
 			} else if (Flag_Status_Charge == Sys_Charging) {
 #if(CHARG_INFO_SHOW==1)
 				LOG("  \n __Sys_Charging__ \n  ");
 #endif
+				fIsBattFullyDisplaying=false;
 				if (!CCS_MODE_DISPLAY) {
 					reInitialLCD();
 					lcd_clear(BLACK);
@@ -819,6 +831,7 @@ uint16 command_center_ProcessEvent(uint8 task_id, uint16 events) {
 #if(CHARG_INFO_SHOW==1)
 				LOG("  \n __Non__ \n  ");
 #endif
+				fIsBattFullyDisplaying=false;
 				lcd_off();
 				CCS_MODE_DISPLAY = false;
 				stopCharging();
@@ -1095,7 +1108,7 @@ void restoreFromCustomizeModeCheck(uint16 * flag) {
  ****************************************************/
 void	  keyFuncUpProcess(u16 *flag){
 	fIsUpdateRemainTimer=1;
-	osal_start_timerEx(command_center_TaskID, CSS_TIMER_50MS_EVT, 1000);
+	osal_start_timerEx(command_center_TaskID, CSS_TIMER_50MS_EVT, 1100);
 	fIsTimeToAutoReload50ms=1;
 	if (HuesSetting == displayParams.arrowIndex) {
 		if (displayParams.hues < MAX_Hues) {
@@ -1180,7 +1193,7 @@ void	  keyFuncDownProcess(u16 *flag){
 //		 turnOffAllLightEffect();
 //	}
 	fIsUpdateRemainTimer=1;
-	osal_start_timerEx(command_center_TaskID, CSS_TIMER_50MS_EVT, 1000);
+	osal_start_timerEx(command_center_TaskID, CSS_TIMER_50MS_EVT, 1100);
 	fIsTimeToAutoReload50ms=1;
 	if (HuesSetting == displayParams.arrowIndex)	{
 		if (displayParams.hues > Min_Hues)	{
@@ -2239,7 +2252,7 @@ void CCS_Systems_on(void)
 	displaySystemMenu(&displayParams);
 	updateArrowDisplay(&displayParams);
 	updateDeviceInfo2Flash();
-	osal_start_timerEx(command_center_TaskID, CSS_TIMER_50MS_EVT, 1000);
+	osal_start_timerEx(command_center_TaskID, CSS_TIMER_50MS_EVT, 1100);
 	fIsTimeToAutoReload50ms=1;
 }
 /*********************************************************************
@@ -2634,12 +2647,12 @@ void HW_RESET_MCU(bool backup) {
   *  @note :
   ************************************************************************************************************/
 void versionDisplay(void) {
-	uint8 fw[] = { "FW:21120601" };
+	uint8 fw[] = { "FW:21120701" };
 	systems_param_Get_param(ITEM_FIRMWARE_REV, &fw[2], &fw[3]);
 	fw[2] = ':';
 	OLED_ShowString(2, 2, fw);
 
-	uint8 sw[] = { "SW:20211206" };
+	uint8 sw[] = { "SW:20211207" };
 //	systems_param_Get_param(ITEM_SOFTWARE_REV, &sw[2], &fw[3]);
 //	sw[2] = ':';
 	OLED_ShowString(2, 4, sw);

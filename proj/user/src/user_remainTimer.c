@@ -22,49 +22,49 @@ extern PcaDataStruct pcaDataStruct;
 void powerLineAdjust(float *currentPower) {
 	switch (displayParams.brightness) {
 	case 100:
-		if (displayParams.colorTemperature != MAX_ColorTemp && displayParams.colorTemperature != MIN_ColorTemp)
-			*currentPower *= 0.97;
+//		if (displayParams.colorTemperature != MAX_ColorTemp && displayParams.colorTemperature != MIN_ColorTemp)
+//			*currentPower *= 0.97;
 		break;
 	case 95:
 		break;
 	case 90:
-		*currentPower *= 1.05;
+//		*currentPower *= 1.05;
 		break;
 	case 85:
-		*currentPower *= 1.05;
+//		*currentPower *= 1.05;
 		break;
 	case 80:
-		*currentPower *= 1.05;
+//		*currentPower *= 1.05;
 		break;
 	case 75:
-		*currentPower *= 1.05;
+//		*currentPower *= 1.05;
 		break;
 	case 70:
-		*currentPower *= 1.05;
+//		*currentPower *= 1.05;
 		break;
 	case 65:
-		*currentPower *= 1.05;
+//		*currentPower *= 1.05;
 		break;
 	case 60:
-		*currentPower *= 1.10;
+//		*currentPower *= 1.10;
 		break;
 	case 55:
-		*currentPower *= 1.05;
+//		*currentPower *= 1.05;
 		break;
 	case 50:
-		*currentPower *= 1.05;
+//		*currentPower *= 1.05;
 		break;
 	case 45:
-		*currentPower *= 1.05;
+//		*currentPower *= 1.05;
 		break;
 	case 40:
-		*currentPower *= 1.05;
+//		*currentPower *= 1.05;
 		break;
 	case 35:
-		*currentPower *= 1.05;
+//		*currentPower *= 1.05;
 		break;
 	case 30:
-		*currentPower *= 1.11;
+//		*currentPower *= 1.11;
 		break;
 	case 25:
 		break;

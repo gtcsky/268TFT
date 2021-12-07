@@ -80,8 +80,8 @@ contact Bouth R&D at www.bough.com.cn
 */
 static hal_spi_t lcd_spi_handle = {SPI0};
 
-static bool fIsChargeDisplaying = false;
-static bool fIsHotDisplayOn = false;
+//static bool fIsChargeDisplaying = false;
+//static bool fIsHotDisplayOn = false;
 displayParamsStruct displayParams;
 
 /*********************************************************************
@@ -840,7 +840,7 @@ void lcd_off(void) {
 //	write_cmd(0x10);		//使用外置DC
 //	WaitMs(1);
 	lcdEntrySleep();
-	fIsChargeDisplaying = false;
+//	fIsChargeDisplaying = false;
 	lcdBusDeinit();
 	hal_pwrmgr_unlock(MOD_LCD_On);
 }
@@ -855,7 +855,7 @@ void lcd_off(void) {
  * @return  none
  **********************************************************************/
 void lcd_clear(u16 Color) {
-	fIsChargeDisplaying = false;
+//	fIsChargeDisplaying = false;
 	fIsBrightnessOffDisplaying = false;
 	u16 i, j;
 //	Address_set(0, 0, LCD_W - 1, LCD_H - 1);
@@ -893,8 +893,8 @@ uint8 lcdDrawFontGbk8(uint16_t x, uint16_t y, uint16_t fc, uint16_t bc, char *s)
 			len = sizeof(remainTable) / sizeof(timerCharDef);
 			for (k = 0; k < len; k++) {
 				if (*s == remainTable[k].charData) {
-					lcdSetRegion(x, y, x + 7, y + 7);
-					for (i = 0; i < 8; i++) {
+					lcdSetRegion(x, y, x + 7, y + 8);
+					for (i = 0; i < 9; i++) {
 						for (j = 0; j < 8; j++) {
 							if (remainTable[k].dotArray[i] & (0x80 >> j)) {
 								lcdDrawPoint(x + j, y + i, fc, false);
@@ -1108,7 +1108,6 @@ void logoDisplay(void) {
 	int ori = hal_systick();
 
 	while (hal_ms_intv(ori) < 1500);
-
 	hal_gpio_write(GPIO_LCD_BACKLIGHT, LOW_STTS);
 	lcdSetRegion(LOGO_START_X, LOGO_START_Y, LOGO_WIDTH, LOGO_HEITHT);
 	uint8 i, j = 0;

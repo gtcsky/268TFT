@@ -474,10 +474,11 @@ void light_update(void) {
 		setGreenData(color.green);
 		setBlueData(color.blue);
 	if (color.cw || color.mw || color.red || color.green || color.blue||light.mode||light.effemode) {
-
 		hal_pwm_start();
 	} else {
 		hal_pwm_stop();
+		hal_gpio_write(GPIO_LIGHT_POWER, GPIO_HL_LIGHT_POWER_OFF);
+		light.power_on = false;
 	}
 	return ;
 }

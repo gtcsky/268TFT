@@ -218,7 +218,8 @@ typedef struct{
 
 typedef struct{
 	uint8 charData;
-	uint8 dotArray[8];
+//	uint8 dotArray[8];
+	uint8 dotArray[9];
 }timerCharDef;
 
 #pragma pack(1)
